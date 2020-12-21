@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc --rootDir ./src --outDir ./dist -d",
-    "test": "ts-mocha test/index.test.ts"
+    "test": "ts-mocha test/*.test.ts"
   },
   "prettier": {
     "arrowParens": "avoid",
