@@ -168,7 +168,9 @@ export function createRouter(
 ): Router {
   const router = Router()
 
-  router.use(...middlewares)
+  if (middlewares.length) {
+    router.use(...middlewares)
+  }
 
   // Sort the routes
   const paths = sortByNestedParams(Object.keys(routes))
@@ -261,4 +263,44 @@ export function createRouter(
   }
 
   return router
+}
+
+/**
+ * Configuration object for the set of mapped routes.
+ */
+export interface MappedRoutesOptions {
+  /**
+   * The Express middlewares to run for these routes.
+   */
+  middlewares?: ExpressRequestHandler[]
+
+  /**
+   * The error handler to use for these mapped routes.
+   * Setting it will disable Express' default error handler for these routes.
+   * The handler is executed only on errors happening inside a route handler,
+   * not inside a middleware.
+   */
+  errorHandler?: ErrorHandler
+
+  /**
+   * The interceptor to run after a successful route.
+   * It can be used to format the response, create some log, etc...
+   */
+  interceptor?: Interceptor
+}
+
+/**
+ * Map routes from a directory to create an Express router.
+ *
+ * @param path The absolute path to the directory containing the routes.
+ * @param options An configuration object for these mapped routes.
+ */
+export function MappedRoutes(
+  path: string,
+  options?: MappedRoutesOptions,
+): Router {
+  const routes = mapRoutes(path)
+  const { errorHandler, interceptor, middlewares } = options || {}
+
+  return createRouter(routes, middlewares, errorHandler, interceptor)
 }

@@ -16,7 +16,12 @@ import { AddressInfo } from 'net'
 import { Server, createServer } from 'http'
 import express, { NextFunction, Request, Response } from 'express'
 import request from 'supertest'
-import { createRouter, mapRoutes, sortByNestedParams } from '../src'
+import {
+  createRouter,
+  MappedRoutes,
+  mapRoutes,
+  sortByNestedParams,
+} from '../src'
 
 describe('mapRoutes()', () => {
   it('should reject relative paths', () => {
@@ -57,7 +62,6 @@ describe('sortByNestedParams()', () => {
 
 describe('createRouter()', () => {
   let server: Server
-  let port: number
   let lastPath: string
 
   before(done => {
@@ -76,10 +80,7 @@ describe('createRouter()', () => {
 
     server = createServer(app)
 
-    server.listen(() => {
-      port = (server.address() as AddressInfo).port
-      done()
-    })
+    server.listen(done)
   })
 
   after(done => {
@@ -111,5 +112,48 @@ describe('createRouter()', () => {
 
     expect(getRes.text).to.equal('testMiddleware,getTestMiddleware,getRoute')
     expect(postRes.text).to.equal('testMiddleware,postTestMiddleware,postRoute')
+  })
+})
+
+describe('MappedRoutes()', () => {
+  let server: Server
+
+  const interceptor = (req: Request, res: Response, content: string) => {
+    res.json({ error: false, data: content })
+  }
+
+  const errorHandler = (req: Request, res: Response, error: any) => {
+    res.json({ error: true, data: error })
+  }
+
+  before(done => {
+    const app = express()
+    const mappedRoutes = MappedRoutes(__dirname + '/routes', {
+      interceptor,
+      errorHandler,
+    })
+
+    app.use(mappedRoutes)
+    server = createServer(app)
+
+    server.listen(done)
+  })
+
+  after(done => {
+    server.close(done)
+  })
+
+  it('should execute the custom error handler', async () => {
+    await request(server).post('/posts/1234/like').expect({
+      error: true,
+      data: 'Not logged in',
+    })
+  })
+
+  it('should execute the interceptor', async () => {
+    await request(server).get('/users').expect({
+      error: false,
+      data: 'Get users',
+    })
   })
 })
