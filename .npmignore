@@ -1,0 +1,9 @@
+docs/
+src/
+test/
+.gitignore
+.prettierignore
+.travis.yml
+CHANGELOG.md
+CODE_OF_CONDUCT.md
+tsconfig.json
