@@ -1,7 +1,15 @@
-import { Request, Response } from 'express'
+import {
+  NextFunction,
+  Request,
+  RequestHandler,
+  Response,
+  Router,
+} from 'express'
 import { isAbsolute, normalize, join } from 'path'
 import { existsSync } from 'fs'
 import read from 'fs-readdir-recursive'
+
+export type ExpressRequestHandler = RequestHandler<any, any, any, any>
 
 /**
  * A route handler that can be synchronous or asynchronous returning a Promise.
@@ -79,4 +87,175 @@ export function sortByNestedParams(routes: string[]): string[] {
 
     return 0
   })
+}
+
+/**
+ * An error handler for the mapped routes.
+ * Executed whenever an error occurs in one of the routes.
+ */
+export type ErrorHandler = (
+  request?: Request,
+  response?: Response,
+  error?: Error | any,
+) => void | Promise<void>
+
+/**
+ * An interceptor for the mapped routes.
+ * Executed after a successful route.
+ */
+export type Interceptor = (
+  request?: Request,
+  response?: Response,
+  content?: any,
+) => void | Promise<void>
+
+/**
+ * Transform a route handler into an Express route.
+ *
+ * @param handler The route handler.
+ * @param onError The error handler.
+ * @param onSuccess The interceptor.
+ */
+export function transformHandler(
+  handler: RouteHandler,
+  onError?: ErrorHandler,
+  onSuccess?: Interceptor,
+) {
+  return async (request: Request, response: Response, next: NextFunction) => {
+    let result: any
+
+    try {
+      result = handler(request, response)
+
+      // Await for async handlers
+      if (result instanceof Promise) {
+        result = await result
+      }
+    } catch (error) {
+      // Use custom error handler if set, or default one if not set
+      if (onError) {
+        onError(request, response, error)
+      } else {
+        next(error)
+      }
+    }
+
+    // Use interceptor or send the raw result if none was set.
+    if (onSuccess) {
+      onSuccess(request, response, result)
+    } else {
+      response.end(result)
+      next()
+    }
+  }
+}
+
+/**
+ * Create an Express Router from mapped routes.
+ *
+ * @param routes The routes provided from `mapRoutes()`.
+ * @param onError The error handler.
+ * @param onSuccess The interceptor.
+ */
+export function createRouter(
+  routes: { [key: string]: string },
+  middlewares: ExpressRequestHandler[] = [],
+  onError?: ErrorHandler,
+  onSuccess?: Interceptor,
+): Router {
+  const router = Router()
+
+  router.use(...middlewares)
+
+  // Sort the routes
+  const paths = sortByNestedParams(Object.keys(routes))
+
+  // Add the routes to the router in the sorted order
+  for (let path of paths) {
+    const file = routes[path]
+    const handler = require(file)
+    const middlewares = handler.middlewares || []
+    const perMethodMiddlewares = {
+      get: handler.getMiddlewares || [],
+      post: handler.postMiddlewares || [],
+      put: handler.putMiddlewares || [],
+      patch: handler.patchMiddlewares || [],
+      del: handler.patchMiddlewares || [],
+      head: handler.headMiddlewares || [],
+      options: handler.optionsMiddlewares || [],
+    }
+
+    if (typeof handler === 'function') {
+      router.all(
+        path,
+        ...middlewares,
+        transformHandler(handler, onError, onSuccess),
+      )
+    } else {
+      if (handler.get) {
+        router.get(
+          path,
+          ...middlewares,
+          ...perMethodMiddlewares.get,
+          transformHandler(handler.get, onError, onSuccess),
+        )
+      }
+
+      if (handler.post) {
+        router.post(
+          path,
+          ...middlewares,
+          ...perMethodMiddlewares.post,
+          transformHandler(handler.post, onError, onSuccess),
+        )
+      }
+
+      if (handler.put) {
+        router.put(
+          path,
+          ...middlewares,
+          ...perMethodMiddlewares.put,
+          transformHandler(handler.put, onError, onSuccess),
+        )
+      }
+
+      if (handler.patch) {
+        router.patch(
+          path,
+          ...middlewares,
+          ...perMethodMiddlewares.patch,
+          transformHandler(handler.patch, onError, onSuccess),
+        )
+      }
+
+      if (handler.del) {
+        router.delete(
+          path,
+          ...middlewares,
+          ...perMethodMiddlewares.del,
+          transformHandler(handler.del, onError, onSuccess),
+        )
+      }
+
+      if (handler.head) {
+        router.head(
+          path,
+          ...middlewares,
+          ...perMethodMiddlewares.head,
+          transformHandler(handler.head, onError, onSuccess),
+        )
+      }
+
+      if (handler.options) {
+        router.options(
+          path,
+          ...middlewares,
+          ...perMethodMiddlewares.options,
+          transformHandler(handler.options, onError, onSuccess),
+        )
+      }
+    }
+  }
+
+  return router
 }
