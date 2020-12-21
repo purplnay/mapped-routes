@@ -102,6 +102,43 @@
               HTTP methods, custom error handling and more.
             </p>
             <a
+              href="#table-of-contents"
+              id="table-of-contents"
+              style="color: inherit; text-decoration: none"
+            >
+              <h1>Table of Contents</h1>
+            </a>
+            <ul>
+              <li><a href="#usage">Usage</a></li>
+              <li><a href="#installation">Installation</a></li>
+              <li>
+                <a href="#documentation">Documentation</a>
+                <ul>
+                  <li><a href="#creating-routes">Creating Routes</a></li>
+                  <li>
+                    <a href="#mappedroutes-options">MappedRoutes() options</a>
+                  </li>
+                  <li><a href="#route-handlers">Route handlers</a></li>
+                  <li>
+                    <a href="#handling-specific-methods"
+                      >Handling specific methods</a
+                    >
+                  </li>
+                  <li><a href="#using-middlewares">Using middlewares</a></li>
+                  <li>
+                    <a href="#using-an-error-handler">Using an error handler</a>
+                  </li>
+                  <li>
+                    <a href="#using-an-interceptor">Using an interceptor</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a href="#using-with-typescript">Using with Typescript</a>
+              </li>
+              <li><a href="#contributions">Contributions</a></li>
+            </ul>
+            <a
               href="#usage"
               id="usage"
               style="color: inherit; text-decoration: none"
@@ -125,7 +162,7 @@
   res.end(<span class="hljs-string">`Get post <span class="hljs-subst">${id}</span>`</span>)
 }
 
-<span class="hljs-comment">// You can also use `return` instead of the `Response` object.</span>
+<span class="hljs-comment">// You can also use `return` instead of the Response object.</span>
 <span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">patch</span>(<span class="hljs-params">req, res</span>) </span>{
   <span class="hljs-keyword">const</span> id = req.params.id
   <span class="hljs-keyword">const</span> body = req.body
@@ -140,13 +177,11 @@
 
 <span class="hljs-keyword">const</span> app = express()
 
-
-<span class="hljs-comment">// The directory where our routes are</span>
+<span class="hljs-comment">// The directory where your routes are</span>
 <span class="hljs-keyword">const</span> dir = __dirname + <span class="hljs-string">&#x27;/api&#x27;</span>
 
-<span class="hljs-comment">// Loads the routes as a regular Express Router.</span>
+<span class="hljs-comment">// Load the routes as a regular Express Router.</span>
 app.use(<span class="hljs-string">&#x27;/api&#x27;</span>, MappedRoutes(dir))
-
 
 app.listen(<span class="hljs-number">3000</span>)</code></pre>
             <a
@@ -156,11 +191,6 @@ app.listen(<span class="hljs-number">3000</span>)</code></pre>
             >
               <h1>Installation</h1>
             </a>
-            <p>
-              The library is typed for Typescript and uses Express as peer
-              dependency, make sure you already have Express installed in your
-              project.
-            </p>
             <ul>
               <li>
                 <p>With <strong>Yarn</strong>:</p>
@@ -171,6 +201,11 @@ app.listen(<span class="hljs-number">3000</span>)</code></pre>
                 <pre><code class="language-bash">npm install mapped-routes</code></pre>
               </li>
             </ul>
+            <p>
+              The library is typed for Typescript and uses Express as peer
+              dependency, make sure you already have Express installed in your
+              project.
+            </p>
             <a
               href="#documentation"
               id="documentation"
@@ -182,8 +217,15 @@ app.listen(<span class="hljs-number">3000</span>)</code></pre>
               The full reference is available
               <a href="https://purplnay.github.io/mapped-routes/">here</a>.
             </p>
+            <a
+              href="#creating-routes"
+              id="creating-routes"
+              style="color: inherit; text-decoration: none"
+            >
+              <h2>Creating routes</h2>
+            </a>
             <p>
-              The path that routes are mapped with is the same as for
+              The path that the routes are mapped with is the same as for
               <a href="https://nextjs.org/docs/api-routes/introduction"
                 >Next.js</a
               >
@@ -206,7 +248,7 @@ app.listen(<span class="hljs-number">3000</span>)</code></pre>
               </li>
             </ul>
             <p>
-              You can have nested parameters, which means the file
+              You can have nested parameters, which means that the file
               <code>posts/[postId]/comments/[id]/index.js</code> will match the
               route <code>/posts/:postId/comments/:id</code>.
             </p>
@@ -215,18 +257,27 @@ app.listen(<span class="hljs-number">3000</span>)</code></pre>
               that you wish. Once you created your folder with some routes, you
               can add it to your Express app like so:
             </p>
-            <pre><code class="language-javascript"><span class="hljs-comment">// Import the MappedRoutes function</span>
-<span class="hljs-keyword">const</span> { MappedRoutes } = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;mapped-routes&#x27;</span>)</code></pre>
-            <pre><code class="language-javascript"><span class="hljs-comment">// Create an express router from your folder</span>
+            <ul>
+              <li>
+                <p>Import the MappedRoutes function:</p>
+                <pre><code class="language-javascript"><span class="hljs-keyword">const</span> { MappedRoutes } = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;mapped-routes&#x27;</span>)</code></pre>
+              </li>
+              <li>
+                <p>Generate the Router and add it to your Express app:</p>
+                <pre><code class="language-javascript"><span class="hljs-comment">// Generate a Router</span>
 <span class="hljs-keyword">const</span> apiRouter = MappedRoutes(__dirname + <span class="hljs-string">&#x27;/api&#x27;</span>)
 
 <span class="hljs-comment">// Add the router to your express app like you normally do</span>
 app.use(apiRouter)</code></pre>
-            <pre><code class="language-javascript"><span class="hljs-comment">// If you have other routes in an auth folder:</span>
-<span class="hljs-keyword">const</span> authRouter = MappedRoutes(__dirname + <span class="hljs-string">&#x27;/auth&#x27;</span>)
+              </li>
+              <li>
+                <p>You can also use a base path for the router:</p>
+                <pre><code class="language-javascript"><span class="hljs-keyword">const</span> authRouter = MappedRoutes(__dirname + <span class="hljs-string">&#x27;/auth&#x27;</span>)
 
-<span class="hljs-comment">// You can use a base path for a router</span>
+<span class="hljs-comment">// Use this router for the /auth path</span>
 app.use(<span class="hljs-string">&#x27;/auth&#x27;</span>, authRouter)</code></pre>
+              </li>
+            </ul>
             <a
               href="#mappedroutes-options"
               id="mappedroutes-options"
@@ -238,15 +289,15 @@ app.use(<span class="hljs-string">&#x27;/auth&#x27;</span>, authRouter)</code></
             <ul>
               <li>
                 <p>
-                  The first one is the <strong>absolute</strong> path to the
+                  The first one is the <strong>absolute path</strong> to the
                   directory that contains your routes:
                 </p>
                 <pre><code class="language-javascript">MappedRoutes(__dirname + <span class="hljs-string">&#x27;/path/to/my/routes&#x27;</span>)</code></pre>
               </li>
               <li>
                 <p>
-                  The second one is an object with configurations for your
-                  router:
+                  The second one is an object with configuration options for
+                  your router:
                 </p>
                 <pre><code class="language-javascript"><span class="hljs-keyword">const</span> options = {
   <span class="hljs-comment">// Middlewares to use before the routes of this router</span>
@@ -256,7 +307,7 @@ app.use(<span class="hljs-string">&#x27;/auth&#x27;</span>, authRouter)</code></
   ],
 
   <span class="hljs-comment">// A function to run when a route throws an error.</span>
-  <span class="hljs-comment">// Settings this parameter will override Express&#x27; default error handler</span>
+  <span class="hljs-comment">// Setting this parameter will override Express&#x27; default error handler</span>
   <span class="hljs-comment">// for this router.</span>
   <span class="hljs-attr">errorHandler</span>: <span class="hljs-function">(<span class="hljs-params">req, res, err</span>) =&gt;</span> {
     <span class="hljs-built_in">console</span>.error(err)
@@ -278,9 +329,9 @@ app.use(<span class="hljs-string">&#x27;/auth&#x27;</span>, authRouter)</code></
 }
 
 <span class="hljs-keyword">const</span> router = MappedRoutes(__dirname + <span class="hljs-string">&#x27;/api&#x27;</span>, options)</code></pre>
-                <p>The options parameter is optional.</p>
               </li>
             </ul>
+            <p>The options parameter is optional.</p>
             <a
               href="#route-handlers"
               id="route-handlers"
@@ -289,7 +340,7 @@ app.use(<span class="hljs-string">&#x27;/auth&#x27;</span>, authRouter)</code></
               <h2>Route handlers</h2>
             </a>
             <p>
-              To create a route handler in one of your route files, simple
+              To create a route handler in one of your route files, simply
               export a function:
             </p>
             <pre><code class="language-javascript"><span class="hljs-comment">// api/users/index.js</span>
@@ -322,13 +373,16 @@ app.use(<span class="hljs-string">&#x27;/auth&#x27;</span>, authRouter)</code></
             >
               <h2>Handling specific methods</h2>
             </a>
-            <p>To handle only GET requests:</p>
+            <p>
+              To handle only GET requests, export a function called
+              <code>get</code>:
+            </p>
             <pre><code class="language-javascript"><span class="hljs-comment">// api/users/index.js</span>
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">get</span>(<span class="hljs-params"></span>) </span>{
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">get</span>(<span class="hljs-params"></span>) </span>{
   <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;List of users&#x27;</span>
 }</code></pre>
-            <p>Using arrow functions:</p>
+            <p>You can also use arrow functions:</p>
             <pre><code class="language-javascript"><span class="hljs-comment">// api/users/index.js</span>
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> get = <span class="hljs-function">() =&gt;</span> {
@@ -347,7 +401,7 @@ app.use(<span class="hljs-string">&#x27;/auth&#x27;</span>, authRouter)</code></
             <p>
               <code>DELETE</code> is a special case because it is a reserved
               keyword in JavaScript, so the word <code>del</code> is used
-              instead of <code>delete</code> in the library:
+              instead of <code>delete</code>:
             </p>
             <pre><code class="language-javascript"><span class="hljs-comment">// api/users/[id].js</span>
 
@@ -363,7 +417,7 @@ app.use(<span class="hljs-string">&#x27;/auth&#x27;</span>, authRouter)</code></
             </a>
             <p>
               As we saw in the
-              <a href="##mappedroutes-options">MappedRoutes() Options</a>, you
+              <a href="#mappedroutes-options">MappedRoutes() Options</a>, you
               can define middlewares for your router to use, but you can also
               define middlewares for individual routes.
             </p>
@@ -382,7 +436,7 @@ app.use(<span class="hljs-string">&#x27;/auth&#x27;</span>, authRouter)</code></
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
   <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;List of users&#x27;</span>
 }</code></pre>
-            <p>You can also defined middlewares for specific methods only:</p>
+            <p>You can also define middlewares for specific methods only:</p>
             <ul>
               <li>
                 <p>Middlewares for a <code>GET</code> method:</p>
@@ -390,7 +444,7 @@ app.use(<span class="hljs-string">&#x27;/auth&#x27;</span>, authRouter)</code></
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> getMiddlewares = [
   someMiddleware,
-  someOhterMiddleware,
+  someOhterMiddleware
 ]</code></pre>
               </li>
               <li>
@@ -399,7 +453,7 @@ app.use(<span class="hljs-string">&#x27;/auth&#x27;</span>, authRouter)</code></
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> postMiddlewares = [
   someMiddleware,
-  someOhterMiddleware,
+  someOhterMiddleware
 ]</code></pre>
               </li>
               <li>
@@ -408,13 +462,13 @@ app.use(<span class="hljs-string">&#x27;/auth&#x27;</span>, authRouter)</code></
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> delMiddlewares = [
   someMiddleware,
-  someOhterMiddleware,
+  someOhterMiddleware
 ]</code></pre>
-                <ul>
-                  <li>
-                    Middlewares for all methods, and some for specific methods:
-                  </li>
-                </ul>
+              </li>
+              <li>
+                <p>
+                  Middlewares for all methods, and some for specific methods:
+                </p>
                 <pre><code class="language-javascript"><span class="hljs-comment">// api/users/index.js</span>
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> middlewares = [
@@ -456,13 +510,13 @@ app.use(<span class="hljs-string">&#x27;/auth&#x27;</span>, authRouter)</code></
             <ul>
               <li>
                 Middlewares from the <code>middleware</code> options in
-                <code>MappedRoutes()</code>
+                <code>MappedRoutes()</code>.
               </li>
               <li>
                 Middlewares exported from
-                <code>export const middlewares = []</code> in the route files
+                <code>export const middlewares = []</code> in the route files.
               </li>
-              <li>Method-specific middlewares</li>
+              <li>Method-specific middlewares.</li>
             </ul>
             <a
               href="#using-an-error-handler"
@@ -485,7 +539,7 @@ app.use(<span class="hljs-string">&#x27;/auth&#x27;</span>, authRouter)</code></
             </p>
             <pre><code class="language-javascript"><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">errorHandler</span>(<span class="hljs-params">request, response, error</span>) </span>{
   <span class="hljs-comment">// request is the Request object from Express</span>
-  <span class="hljs-comment">// response is the Reponse object from Express</span>
+  <span class="hljs-comment">// response is the Response object from Express</span>
   <span class="hljs-comment">// error is the error that was caught from the route</span>
 
   <span class="hljs-built_in">console</span>.error(error)
@@ -532,10 +586,13 @@ app.use(<span class="hljs-string">&#x27;/auth&#x27;</span>, authRouter)</code></
               <h1>Using with Typescript</h1>
             </a>
             <p>
-              Mapped Routes is written in Typescript, so the library comes with
-              its type declarations and documentation.
+              MappedRoutes is written in Typescript, so the library comes with
+              type declarations and documentation.
             </p>
-            <p>Some extra types are exported to help you type your routes.</p>
+            <p>
+              Some extra types are exported to help you type your routes, such
+              as <code>RouteHandler</code>:
+            </p>
             <pre><code class="language-typescript"><span class="hljs-keyword">import</span> { RouteHandler } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;mapped-routes&#x27;</span>
 
 <span class="hljs-comment">// req and res are automatically typed!</span>
@@ -548,12 +605,12 @@ app.use(<span class="hljs-string">&#x27;/auth&#x27;</span>, authRouter)</code></
   <span class="hljs-keyword">return</span> <span class="hljs-number">123</span>
 }
 
-<span class="hljs-comment">// Return type with generics</span>
+<span class="hljs-comment">// Typing with generics</span>
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> patch = RouteHandler&lt;<span class="hljs-built_in">boolean</span>&gt; = <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> {
   <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>
 }
 
-<span class="hljs-comment">// Accepts Promises as well</span>
+<span class="hljs-comment">// Accept Promises as well</span>
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> put = RouteHandler&lt;<span class="hljs-built_in">string</span>&gt; = <span class="hljs-keyword">async</span> (req, res) =&gt; {
   <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;OwO&#x27;</span>
 }
@@ -570,15 +627,18 @@ app.use(<span class="hljs-string">&#x27;/auth&#x27;</span>, authRouter)</code></
 <span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">post</span>(<span class="hljs-params">req: Request, res: Response</span>): <span class="hljs-title">number</span> </span>{
   <span class="hljs-keyword">return</span> <span class="hljs-number">123</span>
 }</code></pre>
-            <p>You can also type your error handler and interceptor:</p>
+            <p>
+              You can type your error handler and interceptor using the
+              <code>ErrorHandler</code> and <code>Interceptor</code> types:
+            </p>
             <pre><code class="language-typescript"><span class="hljs-keyword">import</span> { ErrorHandler, Interceptor } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;mapped-routes&#x27;</span>
 
-<span class="hljs-comment">// ErrorHandler type</span>
+<span class="hljs-comment">// Typed error handler</span>
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> errorHandler: ErrorHandler = <span class="hljs-function">(<span class="hljs-params">req, res, err</span>) =&gt;</span> {
   <span class="hljs-built_in">console</span>.error(err)
 }
 
-<span class="hljs-comment">// Interceptor type</span>
+<span class="hljs-comment">// Typed interceptor</span>
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> interceptor: Interceptor = <span class="hljs-function">(<span class="hljs-params">req, res, content</span>) =&gt;</span> {
   <span class="hljs-built_in">console</span>.log(content)
 }</code></pre>
@@ -591,7 +651,10 @@ app.use(<span class="hljs-string">&#x27;/auth&#x27;</span>, authRouter)</code></
             </a>
             <p>
               Contributions are welcome as Issues or PR! Make sure to read the
-              <a href="">Code of Conducts</a>.
+              <a
+                href="https://github.com/purplnay/mapped-routes/blob/main/CODE_OF_CONDUCT.md"
+                >Code of Conduct</a
+              >.
             </p>
           </div>
         </div>

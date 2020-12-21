@@ -2,6 +2,21 @@
 
 [Next.js](https://nextjs.org/docs/api-routes/introduction) style dynamic route mapping for [Express](https://expressjs.com/), with support for HTTP methods, custom error handling and more.
 
+# Table of Contents
+
+- [Usage](#usage)
+- [Installation](#installation)
+- [Documentation](#documentation)
+  - [Creating Routes](#creating-routes)
+  - [MappedRoutes() options](#mappedroutes-options)
+  - [Route handlers](#route-handlers)
+  - [Handling specific methods](#handling-specific-methods)
+  - [Using middlewares](#using-middlewares)
+  - [Using an error handler](#using-an-error-handler)
+  - [Using an interceptor](#using-an-interceptor)
+- [Using with Typescript](#using-with-typescript)
+- [Contributions](#contributions)
+
 # Usage
 
 Create a route for `/api/users`:
@@ -25,7 +40,7 @@ export function get(req, res) {
   res.end(`Get post ${id}`)
 }
 
-// You can also use `return` instead of the `Response` object.
+// You can also use `return` instead of the Response object.
 export function patch(req, res) {
   const id = req.params.id
   const body = req.body
@@ -42,20 +57,16 @@ import { MappedRoutes } from 'mapped-routes'
 
 const app = express()
 
-
-// The directory where our routes are
+// The directory where your routes are
 const dir = __dirname + '/api'
 
-// Loads the routes as a regular Express Router.
+// Load the routes as a regular Express Router.
 app.use('/api', MappedRoutes(dir))
-
 
 app.listen(3000)
 ```
 
 # Installation
-
-The library is typed for Typescript and uses Express as peer dependency, make sure you already have Express installed in your project.
 
 - With **Yarn**:
   ```bash
@@ -68,51 +79,59 @@ The library is typed for Typescript and uses Express as peer dependency, make su
   npm install mapped-routes
   ```
 
+The library is typed for Typescript and uses Express as peer dependency, make sure you already have Express installed in your project.
+
 # Documentation
 
 The full reference is available [here](https://purplnay.github.io/mapped-routes/).
 
-The path that routes are mapped with is the same as for [Next.js](https://nextjs.org/docs/api-routes/introduction) apps:
+## Creating routes
+
+The path that the routes are mapped with is the same as for [Next.js](https://nextjs.org/docs/api-routes/introduction) apps:
 
 - `users/index.js` will match requests to `/users`
 - `users/[id].js` will match requests to `/users/:id` where `:id` is a dynamic parameter.
 - `posts/[id]/index.js` will match `/posts/:id` where `:id` is a dynamic parameter.
 
-You can have nested parameters, which means the file `posts/[postId]/comments/[id]/index.js` will match the route `/posts/:postId/comments/:id`.
+You can have nested parameters, which means that the file `posts/[postId]/comments/[id]/index.js` will match the route `/posts/:postId/comments/:id`.
 
 You can name the folder that contains your routes with any name that you wish. Once you created your folder with some routes, you can add it to your Express app like so:
 
-```javascript
-// Import the MappedRoutes function
-const { MappedRoutes } = require('mapped-routes')
-```
+- Import the MappedRoutes function:
 
-```javascript
-// Create an express router from your folder
-const apiRouter = MappedRoutes(__dirname + '/api')
+  ```javascript
+  const { MappedRoutes } = require('mapped-routes')
+  ```
 
-// Add the router to your express app like you normally do
-app.use(apiRouter)
-```
-```javascript
-// If you have other routes in an auth folder:
-const authRouter = MappedRoutes(__dirname + '/auth')
+- Generate the Router and add it to your Express app:
 
-// You can use a base path for a router
-app.use('/auth', authRouter)
-```
+  ```javascript
+  // Generate a Router
+  const apiRouter = MappedRoutes(__dirname + '/api')
+
+  // Add the router to your express app like you normally do
+  app.use(apiRouter)
+  ```
+
+- You can also use a base path for the router:
+  ```javascript
+  const authRouter = MappedRoutes(__dirname + '/auth')
+
+  // Use this router for the /auth path
+  app.use('/auth', authRouter)
+  ```
 
 ## MappedRoutes options
 
 The `MappedRoutes()` function takes 2 parameters.
 
-- The first one is the **absolute** path to the directory that contains your routes:
+- The first one is the **absolute path** to the directory that contains your routes:
 
   ```javascript
   MappedRoutes(__dirname + '/path/to/my/routes')
   ```
 
-- The second one is an object with configurations for your router:
+- The second one is an object with configuration options for your router:
 
   ```javascript
   const options = {
@@ -123,7 +142,7 @@ The `MappedRoutes()` function takes 2 parameters.
     ],
 
     // A function to run when a route throws an error.
-    // Settings this parameter will override Express' default error handler
+    // Setting this parameter will override Express' default error handler
     // for this router.
     errorHandler: (req, res, err) => {
       console.error(err)
@@ -147,11 +166,11 @@ The `MappedRoutes()` function takes 2 parameters.
   const router = MappedRoutes(__dirname + '/api', options)
   ```
 
-  The options parameter is optional.
+The options parameter is optional.
 
 ## Route handlers
 
-To create a route handler in one of your route files, simple export a function:
+To create a route handler in one of your route files, simply export a function:
 
 ```javascript
 // api/users/index.js
@@ -186,17 +205,17 @@ export default async function () {
 
 ## Handling specific methods
 
-To handle only GET requests:
+To handle only GET requests, export a function called `get`:
 
 ```javascript
 // api/users/index.js
 
-export default function get() {
+export function get() {
   return 'List of users'
 }
 ```
 
-Using arrow functions:
+You can also use arrow functions:
 
 ```javascript
 // api/users/index.js
@@ -220,7 +239,7 @@ export const post = req => {
 }
 ```
 
-`DELETE` is a special case because it is a reserved keyword in JavaScript, so the word `del` is used instead of `delete` in the library:
+`DELETE` is a special case because it is a reserved keyword in JavaScript, so the word `del` is used instead of `delete`:
 
 ```javascript
 // api/users/[id].js
@@ -232,7 +251,7 @@ export const del = req => {
 
 ## Using middlewares
 
-As we saw in the [MappedRoutes() Options](##mappedroutes-options), you can define middlewares for your router to use, but you can also define middlewares for individual routes.
+As we saw in the [MappedRoutes() Options](#mappedroutes-options), you can define middlewares for your router to use, but you can also define middlewares for individual routes.
 
 To use middlewares for specific routes, simply export an array named `middlewares` containing a list of middlewares to use:
 
@@ -249,7 +268,7 @@ export default function() {
 }
 ```
 
-You can also defined middlewares for specific methods only:
+You can also define middlewares for specific methods only:
 
 - Middlewares for a `GET` method:
 
@@ -258,7 +277,7 @@ You can also defined middlewares for specific methods only:
 
   export const getMiddlewares = [
     someMiddleware,
-    someOhterMiddleware,
+    someOhterMiddleware
   ]
   ```
 
@@ -269,7 +288,7 @@ You can also defined middlewares for specific methods only:
 
   export const postMiddlewares = [
     someMiddleware,
-    someOhterMiddleware,
+    someOhterMiddleware
   ]
   ```
 
@@ -280,11 +299,11 @@ You can also defined middlewares for specific methods only:
 
   export const delMiddlewares = [
     someMiddleware,
-    someOhterMiddleware,
+    someOhterMiddleware
   ]
   ```
   
-  - Middlewares for all methods, and some for specific methods:
+- Middlewares for all methods, and some for specific methods:
 
   ```javascript
   // api/users/index.js
@@ -322,9 +341,9 @@ You can also defined middlewares for specific methods only:
   ```
 
 The middlewares within the mapped routes are executed in that order:
-- Middlewares from the `middleware` options in `MappedRoutes()`
-- Middlewares exported from `export const middlewares = []` in the route files
-- Method-specific middlewares
+- Middlewares from the `middleware` options in `MappedRoutes()`.
+- Middlewares exported from `export const middlewares = []` in the route files.
+- Method-specific middlewares.
 
 ## Using an error handler
 
@@ -336,7 +355,7 @@ The error handler for mapped routes is a simple function that takes 3 arguments:
 ```javascript
 export function errorHandler(request, response, error) {
   // request is the Request object from Express
-  // response is the Reponse object from Express
+  // response is the Response object from Express
   // error is the error that was caught from the route
 
   console.error(error)
@@ -370,9 +389,9 @@ Note that in order to receive `content` in your interceptor, your routes need to
 
 # Using with Typescript
 
-Mapped Routes is written in Typescript, so the library comes with its type declarations and documentation.
+MappedRoutes is written in Typescript, so the library comes with type declarations and documentation.
 
-Some extra types are exported to help you type your routes.
+Some extra types are exported to help you type your routes, such as `RouteHandler`:
 
 ```typescript
 import { RouteHandler } from 'mapped-routes'
@@ -387,12 +406,12 @@ export const post: RouteHandler = (req, res): number => {
   return 123
 }
 
-// Return type with generics
+// Typing with generics
 export const patch = RouteHandler<boolean> = (req, res) => {
   return true
 }
 
-// Accepts Promises as well
+// Accept Promises as well
 export const put = RouteHandler<string> = async (req, res) => {
   return 'OwO'
 }
@@ -415,17 +434,17 @@ export function post(req: Request, res: Response): number {
 }
 ```
 
-You can also type your error handler and interceptor:
+You can type your error handler and interceptor using the `ErrorHandler` and `Interceptor` types:
 
 ```typescript
 import { ErrorHandler, Interceptor } from 'mapped-routes'
 
-// ErrorHandler type
+// Typed error handler
 export const errorHandler: ErrorHandler = (req, res, err) => {
   console.error(err)
 }
 
-// Interceptor type
+// Typed interceptor
 export const interceptor: Interceptor = (req, res, content) => {
   console.log(content)
 }
@@ -433,4 +452,4 @@ export const interceptor: Interceptor = (req, res, content) => {
 
 # Contributions
 
-Contributions are welcome as Issues or PR! Make sure to read the [Code of Conducts]().
+Contributions are welcome as Issues or PR! Make sure to read the [Code of Conduct](https://github.com/purplnay/mapped-routes/blob/main/CODE_OF_CONDUCT.md).
