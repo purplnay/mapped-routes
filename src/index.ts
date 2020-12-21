@@ -144,7 +144,10 @@ export function transformHandler(
     if (onSuccess) {
       onSuccess(request, response, result)
     } else {
-      response.end(result)
+      if (result) {
+        response.end(result)
+      }
+
       next()
     }
   }
