@@ -37,7 +37,8 @@ export function transformHandler(
       onSuccess(request, response, result)
     } else {
       if (result) {
-        response.end(result)
+        response.send(result)
+        response.end()
       }
 
       next()
