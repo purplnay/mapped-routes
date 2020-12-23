@@ -1,11 +1,11 @@
 {
   "name": "mapped-routes",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "dist/index.js",
   "repository": "https://github.com/purplnay/mapped-routes.git",
   "author": "Nay <nay@purpltag.com>",
   "license": "MIT",
-  "homepage": "https://purplnay.github.io/mapped-routes/",
+  "homepage": "https://github.com/purplnay/mapped-routes/",
   "description": "Next.js style routes for Express, with methods support.",
   "keywords": [
     "dynamic-routes",

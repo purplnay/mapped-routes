@@ -44,4 +44,8 @@ describe('MappedRoutes()', () => {
       data: 'Get users',
     })
   })
+
+  it('should ignore the interceptor on undefined', async () => {
+    await request(server).get('/posts/123/comments/456').expect('Comment 456')
+  })
 })

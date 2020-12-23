@@ -33,7 +33,7 @@ export function transformHandler(
     }
 
     // Use interceptor or send the raw result if none was set.
-    if (onSuccess) {
+    if (onSuccess && result !== undefined) {
       onSuccess(request, response, result)
     } else {
       if (result) {
