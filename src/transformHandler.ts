@@ -30,6 +30,8 @@ export function transformHandler(
       } else {
         next(error)
       }
+
+      return
     }
 
     // Use interceptor or send the raw result if none was set.
