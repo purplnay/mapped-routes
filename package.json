@@ -1,6 +1,6 @@
 {
   "name": "mapped-routes",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "dist/index.js",
   "repository": "https://github.com/purplnay/mapped-routes.git",
   "author": "Nay <nay@purpltag.com>",

@@ -18,7 +18,7 @@ export type ErrorHandler = (
   request?: Request,
   response?: Response,
   error?: Error | any,
-) => void | Promise<void>
+) => any
 
 /**
  * An interceptor for the mapped routes.
@@ -28,7 +28,7 @@ export type Interceptor = (
   request?: Request,
   response?: Response,
   content?: any,
-) => void | Promise<void>
+) => any
 
 /**
  * Configuration object for the set of mapped routes.
