@@ -35,7 +35,7 @@ export function createRouter(
       post: handler.postMiddlewares || [],
       put: handler.putMiddlewares || [],
       patch: handler.patchMiddlewares || [],
-      del: handler.patchMiddlewares || [],
+      del: handler.delMiddlewres || [],
       head: handler.headMiddlewares || [],
       options: handler.optionsMiddlewares || [],
     }
