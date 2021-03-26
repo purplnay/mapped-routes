@@ -1,6 +1,6 @@
 {
   "name": "mapped-routes",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "main": "dist/index.js",
   "repository": "https://github.com/purplnay/mapped-routes.git",
   "author": "Nay <nay@purpltag.com>",
@@ -19,7 +19,7 @@
     "build": "tsc --rootDir ./src --outDir ./dist -d",
     "docs": "typedoc --mode file --out docs src",
     "test": "ts-mocha test/*.test.ts",
-    "prepublish": "npm run build"
+    "prepare": "npm run build"
   },
   "prettier": {
     "arrowParens": "avoid",

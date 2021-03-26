@@ -1,5 +1,6 @@
-## v1.0.1~v1.0.4:
+## v1.0.1~v1.0.5:
 
+- Ignore the `.d.ts` TypeScript declaration files.
 - Fix `delete` middlewares not firing.
 - ErrorHandler and Interceptor return type changed to `any`.
 - Stop interceptor from running after an error was handled.
