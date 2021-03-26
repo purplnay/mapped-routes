@@ -23,6 +23,10 @@ export function mapRoutes(dir: string): { [key: string]: string } {
 
   // Get the file paths in `dir`
   const paths = read(dirPath)
+    .filter(path => {
+      // Ignore TypeScript declarations
+      return !path.endsWith('.d.ts')
+    })
     .map(path => {
       // Prepend a / for Express and normalize the path
       return '/' + normalize(path)
