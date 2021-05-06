@@ -6,8 +6,8 @@ export type ExpressRequestHandler = RequestHandler<any, any, any, any>
  * A route handler that can be synchronous or asynchronous returning a Promise.
  */
 export type RouteHandler<T = any> = (
-  request?: Request,
-  response?: Response,
+  request: Request,
+  response: Response,
 ) => T | Promise<T>
 
 /**
@@ -15,8 +15,8 @@ export type RouteHandler<T = any> = (
  * Executed whenever an error occurs in one of the routes.
  */
 export type ErrorHandler = (
-  request?: Request,
-  response?: Response,
+  request: Request,
+  response: Response,
   error?: Error | any,
 ) => any
 
@@ -25,9 +25,9 @@ export type ErrorHandler = (
  * Executed after a successful route.
  */
 export type Interceptor = (
-  request?: Request,
-  response?: Response,
-  content?: any,
+  request: Request,
+  response: Response,
+  content: any,
 ) => any
 
 /**

@@ -1,5 +1,6 @@
-## v1.0.1~v1.0.7:
+## v1.0.1~v1.0.8:
 
+- Fix Request and Response types for TypeScript.
 - Fix DELETE middlewares registration.
 - Ignore the `.d.ts` TypeScript declaration files.
 - Fix `delete` middlewares not firing.
