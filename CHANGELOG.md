@@ -1,5 +1,6 @@
-## v1.0.1~v1.0.5:
+## v1.0.1~v1.0.6:
 
+- Fix DELETE middlewares registration.
 - Ignore the `.d.ts` TypeScript declaration files.
 - Fix `delete` middlewares not firing.
 - ErrorHandler and Interceptor return type changed to `any`.
