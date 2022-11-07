@@ -1,6 +1,13 @@
-import { RequestHandler, Request, Response } from 'express'
+import { NextFunction, Request, Response } from 'express'
 
-export type ExpressRequestHandler = RequestHandler<any, any, any, any>
+/**
+ * An Express middleware handler.
+ */
+export type ExpressRequestHandler = (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => any
 
 /**
  * A route handler that can be synchronous or asynchronous returning a Promise.

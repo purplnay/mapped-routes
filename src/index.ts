@@ -1,5 +1,6 @@
 import { MappedRoutes } from './MappedRoutes'
 import {
+  ExpressRequestHandler,
   MappedRoutesOptions,
   RouteHandler,
   ErrorHandler,
@@ -8,6 +9,7 @@ import {
 
 export {
   MappedRoutes,
+  ExpressRequestHandler,
   MappedRoutesOptions,
   RouteHandler,
   ErrorHandler,
