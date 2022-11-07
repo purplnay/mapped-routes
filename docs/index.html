@@ -1,783 +1,253 @@
-<!DOCTYPE html>
-<html class="default no-js">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>mapped-routes</title>
-    <meta name="description" content="Documentation for mapped-routes" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="assets/css/main.css" />
-  </head>
-  <body>
-    <header>
-      <div class="tsd-page-toolbar">
-        <div class="container">
-          <div class="table-wrap">
-            <div
-              class="table-cell"
-              id="tsd-search"
-              data-index="assets/js/search.json"
-              data-base="."
-            >
-              <div class="field">
-                <label
-                  for="tsd-search-field"
-                  class="tsd-widget search no-caption"
-                  >Search</label
-                >
-                <input id="tsd-search-field" type="text" />
-              </div>
-              <ul class="results">
-                <li class="state loading">Preparing search index...</li>
-                <li class="state failure">The search index is not available</li>
-              </ul>
-              <a href="index.html" class="title">mapped-routes</a>
-            </div>
-            <div class="table-cell" id="tsd-widgets">
-              <div id="tsd-filter">
-                <a
-                  href="#"
-                  class="tsd-widget options no-caption"
-                  data-toggle="options"
-                  >Options</a
-                >
-                <div class="tsd-filter-group">
-                  <div class="tsd-select" id="tsd-filter-visibility">
-                    <span class="tsd-select-label">All</span>
-                    <ul class="tsd-select-list">
-                      <li data-value="public">Public</li>
-                      <li data-value="protected">Public/Protected</li>
-                      <li data-value="private" class="selected">All</li>
-                    </ul>
-                  </div>
-                  <input type="checkbox" id="tsd-filter-inherited" checked />
-                  <label class="tsd-widget" for="tsd-filter-inherited"
-                    >Inherited</label
-                  >
-                  <input type="checkbox" id="tsd-filter-externals" checked />
-                  <label class="tsd-widget" for="tsd-filter-externals"
-                    >Externals</label
-                  >
-                  <input type="checkbox" id="tsd-filter-only-exported" />
-                  <label class="tsd-widget" for="tsd-filter-only-exported"
-                    >Only exported</label
-                  >
-                </div>
-              </div>
-              <a href="#" class="tsd-widget menu no-caption" data-toggle="menu"
-                >Menu</a
-              >
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="tsd-page-title">
-        <div class="container">
-          <ul class="tsd-breadcrumb">
-            <li>
-              <a href="globals.html">Globals</a>
-            </li>
-          </ul>
-          <h1>mapped-routes</h1>
-        </div>
-      </div>
-    </header>
-    <div class="container container-main">
-      <div class="row">
-        <div class="col-8 col-content">
-          <div class="tsd-panel tsd-typography">
-            <a
-              href="#mapped-routes"
-              id="mapped-routes"
-              style="color: inherit; text-decoration: none"
-            >
-              <h1>Mapped Routes</h1>
-            </a>
-            <p>
-              <a href="https://www.travis-ci.com/purplnay/mapped-routes"
-                ><img
-                  src="https://www.travis-ci.com/purplnay/mapped-routes.svg?branch=main"
-                  alt="Build Status"
-              /></a>
-              <img
-                src="https://img.shields.io/npm/v/mapped-routes"
-                alt="Version"
-              />
-              <a href="https://prettier.io/"
-                ><img
-                  src="https://img.shields.io/badge/styled%20with-prettier-ff69b4"
-                  alt="Prettier"
-              /></a>
-              <img
-                src="https://img.shields.io/github/license/purplnay/mapped-routes"
-                alt="License"
-              />
-            </p>
-            <p>
-              <a href="https://nextjs.org/docs/api-routes/introduction"
-                >Next.js</a
-              >
-              style dynamic route mapping for
-              <a href="https://expressjs.com/">Express</a>, with support for
-              HTTP methods, custom error handling and more.
-            </p>
-            <a
-              href="#table-of-contents"
-              id="table-of-contents"
-              style="color: inherit; text-decoration: none"
-            >
-              <h1>Table of Contents</h1>
-            </a>
-            <ul>
-              <li><a href="#usage">Usage</a></li>
-              <li><a href="#installation">Installation</a></li>
-              <li>
-                <a href="#documentation">Documentation</a>
-                <ul>
-                  <li><a href="#creating-routes">Creating Routes</a></li>
-                  <li>
-                    <a href="#mappedroutes-options">MappedRoutes() options</a>
-                  </li>
-                  <li><a href="#route-handlers">Route handlers</a></li>
-                  <li>
-                    <a href="#handling-specific-methods"
-                      >Handling specific methods</a
-                    >
-                  </li>
-                  <li><a href="#using-middlewares">Using middlewares</a></li>
-                  <li>
-                    <a href="#using-an-error-handler">Using an error handler</a>
-                  </li>
-                  <li>
-                    <a href="#using-an-interceptor">Using an interceptor</a>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <a href="#using-with-typescript">Using with Typescript</a>
-              </li>
-              <li><a href="#contributions">Contributions</a></li>
-            </ul>
-            <a
-              href="#usage"
-              id="usage"
-              style="color: inherit; text-decoration: none"
-            >
-              <h1>Usage</h1>
-            </a>
-            <p>Create a route for <code>/api/users</code>:</p>
-            <pre><code class="language-javascript"><span class="hljs-comment">// api/users/index.js</span>
+<!DOCTYPE html><html class="default" lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>mapped-routes</title><meta name="description" content="Documentation for mapped-routes"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script async src="assets/search.js" id="search-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os"</script><header class="tsd-page-toolbar">
+<div class="tsd-toolbar-contents container">
+<div class="table-cell" id="tsd-search" data-base=".">
+<div class="field"><label for="tsd-search-field" class="tsd-widget tsd-toolbar-icon search no-caption"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M15.7824 13.833L12.6666 10.7177C12.5259 10.5771 12.3353 10.499 12.1353 10.499H11.6259C12.4884 9.39596 13.001 8.00859 13.001 6.49937C13.001 2.90909 10.0914 0 6.50048 0C2.90959 0 0 2.90909 0 6.49937C0 10.0896 2.90959 12.9987 6.50048 12.9987C8.00996 12.9987 9.39756 12.4863 10.5008 11.6239V12.1332C10.5008 12.3332 10.5789 12.5238 10.7195 12.6644L13.8354 15.7797C14.1292 16.0734 14.6042 16.0734 14.8948 15.7797L15.7793 14.8954C16.0731 14.6017 16.0731 14.1267 15.7824 13.833ZM6.50048 10.499C4.29094 10.499 2.50018 8.71165 2.50018 6.49937C2.50018 4.29021 4.28781 2.49976 6.50048 2.49976C8.71001 2.49976 10.5008 4.28708 10.5008 6.49937C10.5008 8.70852 8.71314 10.499 6.50048 10.499Z" fill="var(--color-text)"></path></svg></label><input type="text" id="tsd-search-field" aria-label="Search"/></div>
+<div class="field">
+<div id="tsd-toolbar-links"></div></div>
+<ul class="results">
+<li class="state loading">Preparing search index...</li>
+<li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">mapped-routes</a></div>
+<div class="table-cell" id="tsd-widgets"><a href="#" class="tsd-widget tsd-toolbar-icon menu no-caption" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="2" fill="var(--color-text)"></rect><rect x="1" y="7" width="14" height="2" fill="var(--color-text)"></rect><rect x="1" y="11" width="14" height="2" fill="var(--color-text)"></rect></svg></a></div></div></header>
+<div class="container container-main">
+<div class="col-8 col-content">
+<div class="tsd-page-title">
+<h2>mapped-routes</h2></div>
+<div class="tsd-panel tsd-typography">
+<a href="#mapped-routes" id="mapped-routes" style="color: inherit; text-decoration: none;">
+  <h1>Mapped Routes</h1>
+</a>
+<p><img src="https://img.shields.io/npm/v/mapped-routes" alt="Version">
+<a href="https://prettier.io/"><img src="https://img.shields.io/badge/styled%20with-prettier-ff69b4" alt="Prettier"></a>
+<img src="https://img.shields.io/github/license/purplnay/mapped-routes" alt="License"></p>
+<p>File-system routing for <a href="https://expressjs.com/">Express</a>, similar to <a href="https://nextjs.org/docs/api-routes/introduction">Next.js&#39; API routes</a>, with support for HTTP methods, custom error handling and more.</p>
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">req, res</span>) </span>{
-  res.end(<span class="hljs-string">&#x27;Get a list of users&#x27;</span>)
-}</code></pre>
-            <p>
-              Create a GET and a PATCH route for <code>/api/posts/:id</code>:
-            </p>
-            <pre><code class="language-javascript"><span class="hljs-comment">// api/posts/[id].js</span>
+<a href="#table-of-contents" id="table-of-contents" style="color: inherit; text-decoration: none;">
+  <h1>Table of Contents</h1>
+</a>
+<ul>
+<li><a href="#usage">Usage</a></li>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#documentation">Documentation</a><ul>
+<li><a href="#creating-routes">Creating Routes</a></li>
+<li><a href="#mappedroutes-options">MappedRoutes() options</a></li>
+<li><a href="#route-handlers">Route handlers</a></li>
+<li><a href="#handling-specific-methods">Handling specific methods</a></li>
+<li><a href="#using-middlewares">Using middlewares</a></li>
+<li><a href="#using-an-error-handler">Using an error handler</a></li>
+<li><a href="#using-an-interceptor">Using an interceptor</a></li>
+</ul>
+</li>
+<li><a href="#using-with-typescript">Using with Typescript</a></li>
+<li><a href="#contributions">Contributions</a></li>
+</ul>
 
-<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">get</span>(<span class="hljs-params">req, res</span>) </span>{
-  <span class="hljs-keyword">const</span> id = req.params.id
-
-  res.end(<span class="hljs-string">`Get post <span class="hljs-subst">${id}</span>`</span>)
-}
-
-<span class="hljs-comment">// You can also use `return` instead of the Response object.</span>
-<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">patch</span>(<span class="hljs-params">req, res</span>) </span>{
-  <span class="hljs-keyword">const</span> id = req.params.id
-  <span class="hljs-keyword">const</span> body = req.body
-
-  <span class="hljs-keyword">return</span> <span class="hljs-string">`Patch post <span class="hljs-subst">${id}</span> with data <span class="hljs-subst">${body}</span>`</span>
-}</code></pre>
-            <p>
-              Automatically map the <code>/api</code> routes to an Express app:
-            </p>
-            <pre><code class="language-javascript"><span class="hljs-keyword">import</span> express <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;express&#x27;</span>
-<span class="hljs-keyword">import</span> { MappedRoutes } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;mapped-routes&#x27;</span>
-
-<span class="hljs-keyword">const</span> app = express()
-
-<span class="hljs-comment">// The directory where your routes are</span>
-<span class="hljs-keyword">const</span> dir = __dirname + <span class="hljs-string">&#x27;/api&#x27;</span>
-
-<span class="hljs-comment">// Load the routes as a regular Express Router.</span>
-app.use(<span class="hljs-string">&#x27;/api&#x27;</span>, MappedRoutes(dir))
-
-app.listen(<span class="hljs-number">3000</span>)</code></pre>
-            <p>
-              You can add your test files (<code>*.spec.js</code>,
-              <code>*.test.js</code>) next to the route files, they will
-              automatically be ignored by the router:
-            </p>
-            <pre><code class="language-javascript"><span class="hljs-comment">// api/posts/[id].spec.js</span>
-
-describe(<span class="hljs-string">&#x27;Posts by id&#x27;</span>, <span class="hljs-function">() =&gt;</span> {
-  it(<span class="hljs-string">&#x27;should do something wholesome&#x27;</span>, <span class="hljs-function">() =&gt;</span> {
-    <span class="hljs-comment">// Tests here.</span>
-  })
-})</code></pre>
-            <a
-              href="#installation"
-              id="installation"
-              style="color: inherit; text-decoration: none"
-            >
-              <h1>Installation</h1>
-            </a>
-            <ul>
-              <li>
-                <p>With <strong>Yarn</strong>:</p>
-                <pre><code class="language-bash">yarn add mapped-routes</code></pre>
-              </li>
-              <li>
-                <p>with <strong>npm</strong>:</p>
-                <pre><code class="language-bash">npm install mapped-routes</code></pre>
-              </li>
-            </ul>
-            <p>
-              The library is typed for Typescript and uses Express as peer
-              dependency, make sure you already have Express installed in your
-              project.
-            </p>
-            <a
-              href="#documentation"
-              id="documentation"
-              style="color: inherit; text-decoration: none"
-            >
-              <h1>Documentation</h1>
-            </a>
-            <p>
-              The full reference is available
-              <a href="https://purplnay.github.io/mapped-routes/">here</a>.
-            </p>
-            <a
-              href="#creating-routes"
-              id="creating-routes"
-              style="color: inherit; text-decoration: none"
-            >
-              <h2>Creating routes</h2>
-            </a>
-            <p>
-              The path that the routes are mapped with is the same as for
-              <a href="https://nextjs.org/docs/api-routes/introduction"
-                >Next.js</a
-              >
-              apps:
-            </p>
-            <ul>
-              <li>
-                <code>users/index.js</code> will match requests to
-                <code>/users</code>
-              </li>
-              <li>
-                <code>users/[id].js</code> will match requests to
-                <code>/users/:id</code> where <code>:id</code> is a dynamic
-                parameter.
-              </li>
-              <li>
-                <code>posts/[id]/index.js</code> will match
-                <code>/posts/:id</code> where <code>:id</code> is a dynamic
-                parameter.
-              </li>
-            </ul>
-            <p>
-              You can have nested parameters, which means that the file
-              <code>posts/[postId]/comments/[id]/index.js</code> will match the
-              route <code>/posts/:postId/comments/:id</code>.
-            </p>
-            <p>
-              You can name the folder that contains your routes with any name
-              that you wish. Once you created your folder with some routes, you
-              can add it to your Express app like so:
-            </p>
-            <ul>
-              <li>
-                <p>Import the MappedRoutes function:</p>
-                <pre><code class="language-javascript"><span class="hljs-keyword">const</span> { MappedRoutes } = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;mapped-routes&#x27;</span>)</code></pre>
-              </li>
-              <li>
-                <p>Generate the Router and add it to your Express app:</p>
-                <pre><code class="language-javascript"><span class="hljs-comment">// Generate a Router</span>
-<span class="hljs-keyword">const</span> apiRouter = MappedRoutes(__dirname + <span class="hljs-string">&#x27;/api&#x27;</span>)
-
-<span class="hljs-comment">// Add the router to your express app like you normally do</span>
-app.use(apiRouter)</code></pre>
-              </li>
-              <li>
-                <p>You can also use a base path for the router:</p>
-                <pre><code class="language-javascript"><span class="hljs-keyword">const</span> authRouter = MappedRoutes(__dirname + <span class="hljs-string">&#x27;/auth&#x27;</span>)
-
-<span class="hljs-comment">// Use this router for the /auth path</span>
-app.use(<span class="hljs-string">&#x27;/auth&#x27;</span>, authRouter)</code></pre>
-              </li>
-            </ul>
-            <a
-              href="#mappedroutes-options"
-              id="mappedroutes-options"
-              style="color: inherit; text-decoration: none"
-            >
-              <h2>MappedRoutes options</h2>
-            </a>
-            <p>The <code>MappedRoutes()</code> function takes 2 parameters.</p>
-            <ul>
-              <li>
-                <p>
-                  The first one is the <strong>absolute path</strong> to the
-                  directory that contains your routes:
-                </p>
-                <pre><code class="language-javascript">MappedRoutes(__dirname + <span class="hljs-string">&#x27;/path/to/my/routes&#x27;</span>)</code></pre>
-              </li>
-              <li>
-                <p>
-                  The second one is an object with configuration options for
-                  your router:
-                </p>
-                <pre><code class="language-javascript"><span class="hljs-keyword">const</span> options = {
-  <span class="hljs-comment">// Middlewares to use before the routes of this router</span>
-  <span class="hljs-attr">middlewares</span>: [
-    bodyParser.json(),
-    myCustomMiddleware,
-  ],
-
-  <span class="hljs-comment">// A function to run when a route throws an error.</span>
-  <span class="hljs-comment">// Setting this parameter will override Express&#x27; default error handler</span>
-  <span class="hljs-comment">// for this router.</span>
-  <span class="hljs-attr">errorHandler</span>: <span class="hljs-function">(<span class="hljs-params">req, res, err</span>) =&gt;</span> {
-    <span class="hljs-built_in">console</span>.error(err)
-
-    res.json({
-      <span class="hljs-attr">error</span>: <span class="hljs-literal">true</span>,
-      <span class="hljs-attr">data</span>: content
-    })
-  },
-
-  <span class="hljs-comment">// A function to run when a route successfully executed.</span>
-  <span class="hljs-comment">// The third argument is the value returned by the route function.</span>
-  <span class="hljs-attr">interceptor</span>: <span class="hljs-function">(<span class="hljs-params">req, res, content</span>) =&gt;</span> {
-    res.json({
-      <span class="hljs-attr">error</span>: <span class="hljs-literal">false</span>,
-      <span class="hljs-attr">data</span>: content
-    })
-  }
-}
-
-<span class="hljs-keyword">const</span> router = MappedRoutes(__dirname + <span class="hljs-string">&#x27;/api&#x27;</span>, options)</code></pre>
-              </li>
-            </ul>
-            <p>The options parameter is optional.</p>
-            <a
-              href="#route-handlers"
-              id="route-handlers"
-              style="color: inherit; text-decoration: none"
-            >
-              <h2>Route handlers</h2>
-            </a>
-            <p>
-              To create a route handler in one of your route files, simply
-              export a function:
-            </p>
-            <pre><code class="language-javascript"><span class="hljs-comment">// api/users/index.js</span>
-
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, res</span>) </span>{
-  res.end(<span class="hljs-string">&#x27;List of users&#x27;</span>)
-}</code></pre>
-            <p>
-              You can also return a value instead of using the
-              <code>Response</code> object:
-            </p>
-            <pre><code class="language-javascript"><span class="hljs-comment">// api/users/index.js</span>
-
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
-  <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;List of users&#x27;</span>
-}</code></pre>
-            <p>Async functions work as well:</p>
-            <pre><code class="language-javascript"><span class="hljs-comment">// api/users/index.js</span>
-
-<span class="hljs-keyword">import</span> { findAllUsers } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;some-db-helper&#x27;</span>
-
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
-  <span class="hljs-keyword">return</span> <span class="hljs-keyword">await</span> findAllUsers()
-}
+<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
+  <h1>Usage</h1>
+</a>
+<p>Create a route for <code>/api/users</code>:</p>
+<pre><code class="language-javascript"><span class="hl-0">// api/users/index.js</span><br/><br/><span class="hl-1">export</span><span class="hl-2"> </span><span class="hl-1">default</span><span class="hl-2"> </span><span class="hl-3">function</span><span class="hl-2"> (</span><span class="hl-4">req</span><span class="hl-2">, </span><span class="hl-4">res</span><span class="hl-2">) {</span><br/><span class="hl-2">  </span><span class="hl-4">res</span><span class="hl-2">.</span><span class="hl-5">end</span><span class="hl-2">(</span><span class="hl-6">&#39;Get a list of users&#39;</span><span class="hl-2">)</span><br/><span class="hl-2">}</span>
 </code></pre>
-            <a
-              href="#handling-specific-methods"
-              id="handling-specific-methods"
-              style="color: inherit; text-decoration: none"
-            >
-              <h2>Handling specific methods</h2>
-            </a>
-            <p>
-              To handle only GET requests, export a function called
-              <code>get</code>:
-            </p>
-            <pre><code class="language-javascript"><span class="hljs-comment">// api/users/index.js</span>
-
-<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">get</span>(<span class="hljs-params"></span>) </span>{
-  <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;List of users&#x27;</span>
-}</code></pre>
-            <p>You can also use arrow functions:</p>
-            <pre><code class="language-javascript"><span class="hljs-comment">// api/users/index.js</span>
-
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> get = <span class="hljs-function">() =&gt;</span> {
-  <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;List of users&#x27;</span>
-}</code></pre>
-            <p>Handling GET and POST requests:</p>
-            <pre><code class="language-javascript"><span class="hljs-comment">// api/users/index.js</span>
-
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> get = <span class="hljs-function">() =&gt;</span> {
-  <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;List of users&#x27;</span>
-}
-
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> post = <span class="hljs-function"><span class="hljs-params">req</span> =&gt;</span> {
-  <span class="hljs-keyword">return</span> <span class="hljs-string">`Create a user named: <span class="hljs-subst">${req.body.name}</span>`</span>
-}</code></pre>
-            <p>
-              <code>DELETE</code> is a special case because it is a reserved
-              keyword in JavaScript, so the word <code>del</code> is used
-              instead of <code>delete</code>:
-            </p>
-            <pre><code class="language-javascript"><span class="hljs-comment">// api/users/[id].js</span>
-
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> del = <span class="hljs-function"><span class="hljs-params">req</span> =&gt;</span> {
-  <span class="hljs-keyword">return</span> <span class="hljs-string">`Delete user <span class="hljs-subst">${req.params.id}</span>`</span>
-}</code></pre>
-            <a
-              href="#using-middlewares"
-              id="using-middlewares"
-              style="color: inherit; text-decoration: none"
-            >
-              <h2>Using middlewares</h2>
-            </a>
-            <p>
-              As we saw in the
-              <a href="#mappedroutes-options">MappedRoutes() Options</a>, you
-              can define middlewares for your router to use, but you can also
-              define middlewares for individual routes.
-            </p>
-            <p>
-              To use middlewares for specific routes, simply export an array
-              named <code>middlewares</code> containing a list of middlewares to
-              use:
-            </p>
-            <pre><code class="language-javascript"><span class="hljs-comment">// api/users/index.js</span>
-
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> middlewares = [
-  someMiddleware,
-  someOtherMiddleware
-]
-
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
-  <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;List of users&#x27;</span>
-}</code></pre>
-            <p>You can also define middlewares for specific methods only:</p>
-            <ul>
-              <li>
-                <p>Middlewares for a <code>GET</code> method:</p>
-                <pre><code class="language-javascript"><span class="hljs-comment">// api/users/index.js</span>
-
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> getMiddlewares = [
-  someMiddleware,
-  someOhterMiddleware
-]</code></pre>
-              </li>
-              <li>
-                <p>Middlewares for a <code>POST</code> method:</p>
-                <pre><code class="language-javascript"><span class="hljs-comment">// api/users/index.js</span>
-
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> postMiddlewares = [
-  someMiddleware,
-  someOhterMiddleware
-]</code></pre>
-              </li>
-              <li>
-                <p>Middlewares for a <code>DELETE</code> method:</p>
-                <pre><code class="language-javascript"><span class="hljs-comment">// api/users/index.js</span>
-
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> delMiddlewares = [
-  someMiddleware,
-  someOhterMiddleware
-]</code></pre>
-              </li>
-              <li>
-                <p>
-                  Middlewares for all methods, and some for specific methods:
-                </p>
-                <pre><code class="language-javascript"><span class="hljs-comment">// api/users/index.js</span>
-
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> middlewares = [
-  bodyParser.json(),
-  analyticsMiddleware
-]
-
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> getMiddlewares = [
-  someMiddleware
-]
-
-<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">get</span>(<span class="hljs-params"></span>) </span>{
-  <span class="hljs-comment">// bodyParser was executed</span>
-  <span class="hljs-comment">// analyticsMiddleware was executed</span>
-  <span class="hljs-comment">// someMiddleware was executed</span>
-
-  <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;List of users&#x27;</span>
-}
-
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> postMiddlewares = [
-  authMiddleware,
-  anotherMiddleware
-]
-
-<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">post</span>(<span class="hljs-params"></span>) </span>{
-  <span class="hljs-comment">// bodyParser was executed</span>
-  <span class="hljs-comment">// analyticsMiddleware was executed</span>
-  <span class="hljs-comment">// authMiddleware was executed</span>
-  <span class="hljs-comment">// anotherMiddleware was executed</span>
-
-  <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;User created&#x27;</span>
-}</code></pre>
-              </li>
-            </ul>
-            <p>
-              The middlewares within the mapped routes are executed in that
-              order:
-            </p>
-            <ul>
-              <li>
-                Middlewares from the <code>middleware</code> options in
-                <code>MappedRoutes()</code>.
-              </li>
-              <li>
-                Middlewares exported from
-                <code>export const middlewares = []</code> in the route files.
-              </li>
-              <li>Method-specific middlewares.</li>
-            </ul>
-            <a
-              href="#using-an-error-handler"
-              id="using-an-error-handler"
-              style="color: inherit; text-decoration: none"
-            >
-              <h2>Using an error handler</h2>
-            </a>
-            <p>
-              You can use a custom error handler to handle errors that occur in
-              your routes. Be aware that providing a custom error handler for
-              your routes will disable Express&#39;
-              <a href="https://expressjs.com/en/guide/error-handling.html"
-                >default error handler</a
-              >.
-            </p>
-            <p>
-              The error handler for mapped routes is a simple function that
-              takes 3 arguments:
-            </p>
-            <pre><code class="language-javascript"><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">errorHandler</span>(<span class="hljs-params">request, response, error</span>) </span>{
-  <span class="hljs-comment">// request is the Request object from Express</span>
-  <span class="hljs-comment">// response is the Response object from Express</span>
-  <span class="hljs-comment">// error is the error that was caught from the route</span>
-
-  <span class="hljs-built_in">console</span>.error(error)
-
-  response.end(<span class="hljs-string">&#x27;An error occurred.&#x27;</span>)
-}</code></pre>
-            <a
-              href="#using-an-interceptor"
-              id="using-an-interceptor"
-              style="color: inherit; text-decoration: none"
-            >
-              <h2>Using an interceptor</h2>
-            </a>
-            <p>
-              You can create an interceptor for your mapped routes which will be
-              executed whenever a route ran successfully.
-            </p>
-            <p>
-              The usual use of an interceptor is to format the responses and, if
-              necessary, to log some information. An interceptor is a function
-              that takes 3 arguments:
-            </p>
-            <pre><code class="language-javascript"><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">interceptor</span>(<span class="hljs-params">request, response, content</span>) </span>{
-  <span class="hljs-comment">// request is the Request object from Express</span>
-  <span class="hljs-comment">// response is the Response object from Express</span>
-  <span class="hljs-comment">// content is the content returned by the route function</span>
-
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Route executed successfully:&#x27;</span>, request.url)
-
-  response.json({
-    <span class="hljs-attr">error</span>: <span class="hljs-literal">false</span>,
-    <span class="hljs-attr">data</span>: content
-  })
-}</code></pre>
-            <p>
-              Note that in order to receive <code>content</code> in your
-              interceptor, your routes need to return some value.
-            </p>
-            <a
-              href="#using-with-typescript"
-              id="using-with-typescript"
-              style="color: inherit; text-decoration: none"
-            >
-              <h1>Using with Typescript</h1>
-            </a>
-            <p>
-              MappedRoutes is written in Typescript, so the library comes with
-              type declarations and documentation.
-            </p>
-            <p>
-              Some extra types are exported to help you type your routes, such
-              as <code>RouteHandler</code>:
-            </p>
-            <pre><code class="language-typescript"><span class="hljs-keyword">import</span> { RouteHandler } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;mapped-routes&#x27;</span>
-
-<span class="hljs-comment">// req and res are automatically typed!</span>
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> get: RouteHandler = <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> {
-  <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;My typed and mapped GET route&#x27;</span>
-}
-
-<span class="hljs-comment">// Typing the return type</span>
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> post: RouteHandler = (req, res): <span class="hljs-function"><span class="hljs-params">number</span> =&gt;</span> {
-  <span class="hljs-keyword">return</span> <span class="hljs-number">123</span>
-}
-
-<span class="hljs-comment">// Typing with generics</span>
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> patch = RouteHandler&lt;<span class="hljs-built_in">boolean</span>&gt; = <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> {
-  <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>
-}
-
-<span class="hljs-comment">// Accept Promises as well</span>
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> put = RouteHandler&lt;<span class="hljs-built_in">string</span>&gt; = <span class="hljs-keyword">async</span> (req, res) =&gt; {
-  <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;OwO&#x27;</span>
-}
+<p>Create a GET and a PATCH route for <code>/api/posts/:id</code>:</p>
+<pre><code class="language-javascript"><span class="hl-0">// api/posts/[id].js</span><br/><br/><span class="hl-1">export</span><span class="hl-2"> </span><span class="hl-3">function</span><span class="hl-2"> </span><span class="hl-5">get</span><span class="hl-2">(</span><span class="hl-4">req</span><span class="hl-2">, </span><span class="hl-4">res</span><span class="hl-2">) {</span><br/><span class="hl-2">  </span><span class="hl-3">const</span><span class="hl-2"> </span><span class="hl-7">id</span><span class="hl-2"> = </span><span class="hl-4">req</span><span class="hl-2">.</span><span class="hl-4">params</span><span class="hl-2">.</span><span class="hl-4">id</span><br/><br/><span class="hl-2">  </span><span class="hl-4">res</span><span class="hl-2">.</span><span class="hl-5">end</span><span class="hl-2">(</span><span class="hl-6">`Get post </span><span class="hl-3">${</span><span class="hl-4">id</span><span class="hl-3">}</span><span class="hl-6">`</span><span class="hl-2">)</span><br/><span class="hl-2">}</span><br/><br/><span class="hl-0">// You can also use `return` instead of the Response object.</span><br/><span class="hl-1">export</span><span class="hl-2"> </span><span class="hl-3">function</span><span class="hl-2"> </span><span class="hl-5">patch</span><span class="hl-2">(</span><span class="hl-4">req</span><span class="hl-2">, </span><span class="hl-4">res</span><span class="hl-2">) {</span><br/><span class="hl-2">  </span><span class="hl-3">const</span><span class="hl-2"> </span><span class="hl-7">id</span><span class="hl-2"> = </span><span class="hl-4">req</span><span class="hl-2">.</span><span class="hl-4">params</span><span class="hl-2">.</span><span class="hl-4">id</span><br/><span class="hl-2">  </span><span class="hl-3">const</span><span class="hl-2"> </span><span class="hl-7">body</span><span class="hl-2"> = </span><span class="hl-4">req</span><span class="hl-2">.</span><span class="hl-4">body</span><br/><br/><span class="hl-2">  </span><span class="hl-1">return</span><span class="hl-2"> </span><span class="hl-6">`Patch post </span><span class="hl-3">${</span><span class="hl-4">id</span><span class="hl-3">}</span><span class="hl-6"> with data </span><span class="hl-3">${</span><span class="hl-4">body</span><span class="hl-3">}</span><span class="hl-6">`</span><br/><span class="hl-2">}</span>
 </code></pre>
-            <p>You can also use regular functions and Express&#39; types:</p>
-            <pre><code class="language-typescript"><span class="hljs-keyword">import</span> { Request, Response } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;express&#x27;</span>
+<p>Automatically map the <code>/api</code> routes to an Express app:</p>
+<pre><code class="language-javascript"><span class="hl-1">import</span><span class="hl-2"> </span><span class="hl-4">express</span><span class="hl-2"> </span><span class="hl-1">from</span><span class="hl-2"> </span><span class="hl-6">&#39;express&#39;</span><br/><span class="hl-1">import</span><span class="hl-2"> { </span><span class="hl-4">MappedRoutes</span><span class="hl-2"> } </span><span class="hl-1">from</span><span class="hl-2"> </span><span class="hl-6">&#39;mapped-routes&#39;</span><br/><br/><span class="hl-3">const</span><span class="hl-2"> </span><span class="hl-7">app</span><span class="hl-2"> = </span><span class="hl-5">express</span><span class="hl-2">()</span><br/><br/><span class="hl-0">// The directory where your routes are</span><br/><span class="hl-3">const</span><span class="hl-2"> </span><span class="hl-7">dir</span><span class="hl-2"> = </span><span class="hl-4">__dirname</span><span class="hl-2"> + </span><span class="hl-6">&#39;/api&#39;</span><br/><br/><span class="hl-0">// Load the routes as a regular Express Router.</span><br/><span class="hl-4">app</span><span class="hl-2">.</span><span class="hl-5">use</span><span class="hl-2">(</span><span class="hl-6">&#39;/api&#39;</span><span class="hl-2">, </span><span class="hl-5">MappedRoutes</span><span class="hl-2">(</span><span class="hl-4">dir</span><span class="hl-2">))</span><br/><br/><span class="hl-4">app</span><span class="hl-2">.</span><span class="hl-5">listen</span><span class="hl-2">(</span><span class="hl-8">3000</span><span class="hl-2">)</span>
+</code></pre>
+<p>You can add your test files (<code>*.spec.js</code>, <code>*.test.js</code>) next to the route
+files, they will automatically be ignored by the router:</p>
+<pre><code class="language-javascript"><span class="hl-0">// api/posts/[id].spec.js</span><br/><br/><span class="hl-5">describe</span><span class="hl-2">(</span><span class="hl-6">&#39;Posts by id&#39;</span><span class="hl-2">, () </span><span class="hl-3">=&gt;</span><span class="hl-2"> {</span><br/><span class="hl-2">  </span><span class="hl-5">it</span><span class="hl-2">(</span><span class="hl-6">&#39;should do something wholesome&#39;</span><span class="hl-2">, () </span><span class="hl-3">=&gt;</span><span class="hl-2"> {</span><br/><span class="hl-2">    </span><span class="hl-0">// Tests here.</span><br/><span class="hl-2">  })</span><br/><span class="hl-2">})</span>
+</code></pre>
 
-<span class="hljs-comment">// Using functions, simply use Express types</span>
-<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">get</span>(<span class="hljs-params">req: Request, res: Response</span>) </span>{
-  <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;Some value&#x27;</span>
-}
+<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
+  <h1>Installation</h1>
+</a>
+<ul>
+<li><p>With <strong>Yarn</strong>:</p>
+<pre><code class="language-bash"><span class="hl-2">yarn add mapped-routes</span>
+</code></pre>
+</li>
+<li><p>with <strong>npm</strong>:</p>
+<pre><code class="language-bash"><span class="hl-2">npm install mapped-routes</span>
+</code></pre>
+</li>
+</ul>
+<p>The library is typed for Typescript and uses Express as peer dependency, make sure you already have Express installed in your project.</p>
 
-<span class="hljs-comment">// Using functions and typing the return type</span>
-<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">post</span>(<span class="hljs-params">req: Request, res: Response</span>): <span class="hljs-title">number</span> </span>{
-  <span class="hljs-keyword">return</span> <span class="hljs-number">123</span>
-}</code></pre>
-            <p>
-              You can type your error handler and interceptor using the
-              <code>ErrorHandler</code> and <code>Interceptor</code> types:
-            </p>
-            <pre><code class="language-typescript"><span class="hljs-keyword">import</span> { ErrorHandler, Interceptor } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;mapped-routes&#x27;</span>
+<a href="#documentation" id="documentation" style="color: inherit; text-decoration: none;">
+  <h1>Documentation</h1>
+</a>
+<p>The full reference is available <a href="https://purplnay.github.io/mapped-routes/">here</a>.</p>
 
-<span class="hljs-comment">// Typed error handler</span>
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> errorHandler: ErrorHandler = <span class="hljs-function">(<span class="hljs-params">req, res, err</span>) =&gt;</span> {
-  <span class="hljs-built_in">console</span>.error(err)
-}
+<a href="#creating-routes" id="creating-routes" style="color: inherit; text-decoration: none;">
+  <h2>Creating routes</h2>
+</a>
+<p>The path that the routes are mapped with is the same as for <a href="https://nextjs.org/docs/api-routes/introduction">Next.js</a> apps:</p>
+<ul>
+<li><code>users/index.js</code> will match requests to <code>/users</code></li>
+<li><code>users/[id].js</code> will match requests to <code>/users/:id</code> where <code>:id</code> is a dynamic parameter.</li>
+<li><code>posts/[id]/index.js</code> will match <code>/posts/:id</code> where <code>:id</code> is a dynamic parameter.</li>
+</ul>
+<p>You can have nested parameters, which means that the file <code>posts/[postId]/comments/[id]/index.js</code> will match the route <code>/posts/:postId/comments/:id</code>.</p>
+<p>You can name the folder that contains your routes with any name that you wish. Once you created your folder with some routes, you can add it to your Express app like so:</p>
+<ul>
+<li><p>Import the MappedRoutes function:</p>
+<pre><code class="language-javascript"><span class="hl-3">const</span><span class="hl-2"> { </span><span class="hl-7">MappedRoutes</span><span class="hl-2"> } = </span><span class="hl-5">require</span><span class="hl-2">(</span><span class="hl-6">&#39;mapped-routes&#39;</span><span class="hl-2">)</span>
+</code></pre>
+</li>
+<li><p>Generate the Router and add it to your Express app:</p>
+<pre><code class="language-javascript"><span class="hl-0">// Generate a Router</span><br/><span class="hl-3">const</span><span class="hl-2"> </span><span class="hl-7">apiRouter</span><span class="hl-2"> = </span><span class="hl-5">MappedRoutes</span><span class="hl-2">(</span><span class="hl-4">__dirname</span><span class="hl-2"> + </span><span class="hl-6">&#39;/api&#39;</span><span class="hl-2">)</span><br/><br/><span class="hl-0">// Add the router to your express app like you normally do</span><br/><span class="hl-4">app</span><span class="hl-2">.</span><span class="hl-5">use</span><span class="hl-2">(</span><span class="hl-4">apiRouter</span><span class="hl-2">)</span>
+</code></pre>
+</li>
+<li><p>You can also use a base path for the router:</p>
+<pre><code class="language-javascript"><span class="hl-3">const</span><span class="hl-2"> </span><span class="hl-7">authRouter</span><span class="hl-2"> = </span><span class="hl-5">MappedRoutes</span><span class="hl-2">(</span><span class="hl-4">__dirname</span><span class="hl-2"> + </span><span class="hl-6">&#39;/auth&#39;</span><span class="hl-2">)</span><br/><br/><span class="hl-0">// Use this router for the /auth path</span><br/><span class="hl-4">app</span><span class="hl-2">.</span><span class="hl-5">use</span><span class="hl-2">(</span><span class="hl-6">&#39;/auth&#39;</span><span class="hl-2">, </span><span class="hl-4">authRouter</span><span class="hl-2">)</span>
+</code></pre>
+</li>
+</ul>
 
-<span class="hljs-comment">// Typed interceptor</span>
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> interceptor: Interceptor = <span class="hljs-function">(<span class="hljs-params">req, res, content</span>) =&gt;</span> {
-  <span class="hljs-built_in">console</span>.log(content)
-}</code></pre>
-            <a
-              href="#contributions"
-              id="contributions"
-              style="color: inherit; text-decoration: none"
-            >
-              <h1>Contributions</h1>
-            </a>
-            <p>
-              Contributions are welcome as Issues or PR! Make sure to read the
-              <a
-                href="https://github.com/purplnay/mapped-routes/blob/main/CODE_OF_CONDUCT.md"
-                >Code of Conduct</a
-              >.
-            </p>
-          </div>
-        </div>
-        <div class="col-4 col-menu menu-sticky-wrap menu-highlight">
-          <nav class="tsd-navigation primary">
-            <ul>
-              <li class="globals">
-                <a href="globals.html"><em>Globals</em></a>
-              </li>
-            </ul>
-          </nav>
-          <nav class="tsd-navigation secondary menu-sticky">
-            <ul class="before-current">
-              <li class="tsd-kind-interface">
-                <a
-                  href="interfaces/mappedroutesoptions.html"
-                  class="tsd-kind-icon"
-                  >Mapped<wbr />Routes<wbr />Options</a
-                >
-              </li>
-              <li class="tsd-kind-type-alias">
-                <a href="globals.html#errorhandler" class="tsd-kind-icon"
-                  >Error<wbr />Handler</a
-                >
-              </li>
-              <li class="tsd-kind-type-alias">
-                <a
-                  href="globals.html#expressrequesthandler"
-                  class="tsd-kind-icon"
-                  >Express<wbr />Request<wbr />Handler</a
-                >
-              </li>
-              <li class="tsd-kind-type-alias">
-                <a href="globals.html#interceptor" class="tsd-kind-icon"
-                  >Interceptor</a
-                >
-              </li>
-              <li class="tsd-kind-type-alias tsd-has-type-parameter">
-                <a href="globals.html#routehandler" class="tsd-kind-icon"
-                  >Route<wbr />Handler</a
-                >
-              </li>
-              <li class="tsd-kind-function">
-                <a href="globals.html#mappedroutes" class="tsd-kind-icon"
-                  >Mapped<wbr />Routes</a
-                >
-              </li>
-              <li class="tsd-kind-function">
-                <a href="globals.html#createrouter" class="tsd-kind-icon"
-                  >create<wbr />Router</a
-                >
-              </li>
-              <li class="tsd-kind-function">
-                <a href="globals.html#maproutes" class="tsd-kind-icon"
-                  >map<wbr />Routes</a
-                >
-              </li>
-              <li class="tsd-kind-function">
-                <a href="globals.html#sortbynestedparams" class="tsd-kind-icon"
-                  >sort<wbr />ByNested<wbr />Params</a
-                >
-              </li>
-              <li class="tsd-kind-function">
-                <a href="globals.html#transformhandler" class="tsd-kind-icon"
-                  >transform<wbr />Handler</a
-                >
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </div>
-    </div>
-    <footer class="with-border-bottom">
-      <div class="container">
-        <h2>Legend</h2>
-        <div class="tsd-legend-group">
-          <ul class="tsd-legend">
-            <li class="tsd-kind-property tsd-parent-kind-interface">
-              <span class="tsd-kind-icon">Property</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </footer>
-    <div class="container tsd-generator">
-      <p>
-        Generated using
-        <a href="https://typedoc.org/" target="_blank">TypeDoc</a>
-      </p>
-    </div>
-    <div class="overlay"></div>
-    <script src="assets/js/main.js"></script>
-  </body>
-</html>
+<a href="#mappedroutes-options" id="mappedroutes-options" style="color: inherit; text-decoration: none;">
+  <h2>MappedRoutes options</h2>
+</a>
+<p>The <code>MappedRoutes()</code> function takes 2 parameters.</p>
+<ul>
+<li><p>The first one is the <strong>absolute path</strong> to the directory that contains your routes:</p>
+<pre><code class="language-javascript"><span class="hl-5">MappedRoutes</span><span class="hl-2">(</span><span class="hl-4">__dirname</span><span class="hl-2"> + </span><span class="hl-6">&#39;/path/to/my/routes&#39;</span><span class="hl-2">)</span>
+</code></pre>
+</li>
+<li><p>The second one is an object with configuration options for your router:</p>
+<pre><code class="language-javascript"><span class="hl-3">const</span><span class="hl-2"> </span><span class="hl-7">options</span><span class="hl-2"> = {</span><br/><span class="hl-2">  </span><span class="hl-0">// Middlewares to use before the routes of this router</span><br/><span class="hl-2">  </span><span class="hl-4">middlewares:</span><span class="hl-2"> [</span><br/><span class="hl-2">    </span><span class="hl-4">bodyParser</span><span class="hl-2">.</span><span class="hl-5">json</span><span class="hl-2">(),</span><br/><span class="hl-2">    </span><span class="hl-4">myCustomMiddleware</span><span class="hl-2">,</span><br/><span class="hl-2">  ],</span><br/><br/><span class="hl-2">  </span><span class="hl-0">// A function to run when a route throws an error.</span><br/><span class="hl-2">  </span><span class="hl-0">// Setting this parameter will override Express&#39; default error handler</span><br/><span class="hl-2">  </span><span class="hl-0">// for this router.</span><br/><span class="hl-2">  </span><span class="hl-5">errorHandler</span><span class="hl-4">:</span><span class="hl-2"> (</span><span class="hl-4">req</span><span class="hl-2">, </span><span class="hl-4">res</span><span class="hl-2">, </span><span class="hl-4">err</span><span class="hl-2">) </span><span class="hl-3">=&gt;</span><span class="hl-2"> {</span><br/><span class="hl-2">    </span><span class="hl-4">console</span><span class="hl-2">.</span><span class="hl-5">error</span><span class="hl-2">(</span><span class="hl-4">err</span><span class="hl-2">)</span><br/><br/><span class="hl-2">    </span><span class="hl-4">res</span><span class="hl-2">.</span><span class="hl-5">json</span><span class="hl-2">({</span><br/><span class="hl-2">      </span><span class="hl-4">error:</span><span class="hl-2"> </span><span class="hl-3">true</span><span class="hl-2">,</span><br/><span class="hl-2">      </span><span class="hl-4">data:</span><span class="hl-2"> </span><span class="hl-4">content</span><br/><span class="hl-2">    })</span><br/><span class="hl-2">  },</span><br/><br/><span class="hl-2">  </span><span class="hl-0">// A function to run when a route successfully executed.</span><br/><span class="hl-2">  </span><span class="hl-0">// The third argument is the value returned by the route function.</span><br/><span class="hl-2">  </span><span class="hl-5">interceptor</span><span class="hl-4">:</span><span class="hl-2"> (</span><span class="hl-4">req</span><span class="hl-2">, </span><span class="hl-4">res</span><span class="hl-2">, </span><span class="hl-4">content</span><span class="hl-2">) </span><span class="hl-3">=&gt;</span><span class="hl-2"> {</span><br/><span class="hl-2">    </span><span class="hl-4">res</span><span class="hl-2">.</span><span class="hl-5">json</span><span class="hl-2">({</span><br/><span class="hl-2">      </span><span class="hl-4">error:</span><span class="hl-2"> </span><span class="hl-3">false</span><span class="hl-2">,</span><br/><span class="hl-2">      </span><span class="hl-4">data:</span><span class="hl-2"> </span><span class="hl-4">content</span><br/><span class="hl-2">    })</span><br/><span class="hl-2">  }</span><br/><span class="hl-2">}</span><br/><br/><span class="hl-3">const</span><span class="hl-2"> </span><span class="hl-7">router</span><span class="hl-2"> = </span><span class="hl-5">MappedRoutes</span><span class="hl-2">(</span><span class="hl-4">__dirname</span><span class="hl-2"> + </span><span class="hl-6">&#39;/api&#39;</span><span class="hl-2">, </span><span class="hl-4">options</span><span class="hl-2">)</span>
+</code></pre>
+</li>
+</ul>
+<p>The options parameter is optional.</p>
+
+<a href="#route-handlers" id="route-handlers" style="color: inherit; text-decoration: none;">
+  <h2>Route handlers</h2>
+</a>
+<p>To create a route handler in one of your route files, simply export a function:</p>
+<pre><code class="language-javascript"><span class="hl-0">// api/users/index.js</span><br/><br/><span class="hl-1">export</span><span class="hl-2"> </span><span class="hl-1">default</span><span class="hl-2"> </span><span class="hl-3">function</span><span class="hl-2">(</span><span class="hl-4">req</span><span class="hl-2">, </span><span class="hl-4">res</span><span class="hl-2">) {</span><br/><span class="hl-2">  </span><span class="hl-4">res</span><span class="hl-2">.</span><span class="hl-5">end</span><span class="hl-2">(</span><span class="hl-6">&#39;List of users&#39;</span><span class="hl-2">)</span><br/><span class="hl-2">}</span>
+</code></pre>
+<p>You can also return a value instead of using the <code>Response</code> object:</p>
+<pre><code class="language-javascript"><span class="hl-0">// api/users/index.js</span><br/><br/><span class="hl-1">export</span><span class="hl-2"> </span><span class="hl-1">default</span><span class="hl-2"> </span><span class="hl-3">function</span><span class="hl-2"> () {</span><br/><span class="hl-2">  </span><span class="hl-1">return</span><span class="hl-2"> </span><span class="hl-6">&#39;List of users&#39;</span><br/><span class="hl-2">}</span>
+</code></pre>
+<p>Async functions work as well:</p>
+<pre><code class="language-javascript"><span class="hl-0">// api/users/index.js</span><br/><br/><span class="hl-1">import</span><span class="hl-2"> { </span><span class="hl-4">findAllUsers</span><span class="hl-2"> } </span><span class="hl-1">from</span><span class="hl-2"> </span><span class="hl-6">&#39;some-db-helper&#39;</span><br/><br/><span class="hl-1">export</span><span class="hl-2"> </span><span class="hl-1">default</span><span class="hl-2"> </span><span class="hl-3">async</span><span class="hl-2"> </span><span class="hl-3">function</span><span class="hl-2"> () {</span><br/><span class="hl-2">  </span><span class="hl-1">return</span><span class="hl-2"> </span><span class="hl-1">await</span><span class="hl-2"> </span><span class="hl-5">findAllUsers</span><span class="hl-2">()</span><br/><span class="hl-2">}</span><br/>
+</code></pre>
+
+<a href="#handling-specific-methods" id="handling-specific-methods" style="color: inherit; text-decoration: none;">
+  <h2>Handling specific methods</h2>
+</a>
+<p>To handle only GET requests, export a function called <code>get</code>:</p>
+<pre><code class="language-javascript"><span class="hl-0">// api/users/index.js</span><br/><br/><span class="hl-1">export</span><span class="hl-2"> </span><span class="hl-3">function</span><span class="hl-2"> </span><span class="hl-5">get</span><span class="hl-2">() {</span><br/><span class="hl-2">  </span><span class="hl-1">return</span><span class="hl-2"> </span><span class="hl-6">&#39;List of users&#39;</span><br/><span class="hl-2">}</span>
+</code></pre>
+<p>You can also use arrow functions:</p>
+<pre><code class="language-javascript"><span class="hl-0">// api/users/index.js</span><br/><br/><span class="hl-1">export</span><span class="hl-2"> </span><span class="hl-3">const</span><span class="hl-2"> </span><span class="hl-5">get</span><span class="hl-2"> = () </span><span class="hl-3">=&gt;</span><span class="hl-2"> {</span><br/><span class="hl-2">  </span><span class="hl-1">return</span><span class="hl-2"> </span><span class="hl-6">&#39;List of users&#39;</span><br/><span class="hl-2">}</span>
+</code></pre>
+<p>Handling GET and POST requests:</p>
+<pre><code class="language-javascript"><span class="hl-0">// api/users/index.js</span><br/><br/><span class="hl-1">export</span><span class="hl-2"> </span><span class="hl-3">const</span><span class="hl-2"> </span><span class="hl-5">get</span><span class="hl-2"> = () </span><span class="hl-3">=&gt;</span><span class="hl-2"> {</span><br/><span class="hl-2">  </span><span class="hl-1">return</span><span class="hl-2"> </span><span class="hl-6">&#39;List of users&#39;</span><br/><span class="hl-2">}</span><br/><br/><span class="hl-1">export</span><span class="hl-2"> </span><span class="hl-3">const</span><span class="hl-2"> </span><span class="hl-5">post</span><span class="hl-2"> = </span><span class="hl-4">req</span><span class="hl-2"> </span><span class="hl-3">=&gt;</span><span class="hl-2"> {</span><br/><span class="hl-2">  </span><span class="hl-1">return</span><span class="hl-2"> </span><span class="hl-6">`Create a user named: </span><span class="hl-3">${</span><span class="hl-4">req</span><span class="hl-9">.</span><span class="hl-4">body</span><span class="hl-9">.</span><span class="hl-4">name</span><span class="hl-3">}</span><span class="hl-6">`</span><br/><span class="hl-2">}</span>
+</code></pre>
+<p><code>DELETE</code> is a special case because it is a reserved keyword in JavaScript, so the word <code>del</code> is used instead of <code>delete</code>:</p>
+<pre><code class="language-javascript"><span class="hl-0">// api/users/[id].js</span><br/><br/><span class="hl-1">export</span><span class="hl-2"> </span><span class="hl-3">const</span><span class="hl-2"> </span><span class="hl-5">del</span><span class="hl-2"> = </span><span class="hl-4">req</span><span class="hl-2"> </span><span class="hl-3">=&gt;</span><span class="hl-2"> {</span><br/><span class="hl-2">  </span><span class="hl-1">return</span><span class="hl-2"> </span><span class="hl-6">`Delete user </span><span class="hl-3">${</span><span class="hl-4">req</span><span class="hl-9">.</span><span class="hl-4">params</span><span class="hl-9">.</span><span class="hl-4">id</span><span class="hl-3">}</span><span class="hl-6">`</span><br/><span class="hl-2">}</span>
+</code></pre>
+
+<a href="#using-middlewares" id="using-middlewares" style="color: inherit; text-decoration: none;">
+  <h2>Using middlewares</h2>
+</a>
+<p>As we saw in the <a href="#mappedroutes-options">MappedRoutes() Options</a>, you can define middlewares for your router to use, but you can also define middlewares for individual routes.</p>
+<p>To use middlewares for specific routes, simply export an array named <code>middlewares</code> containing a list of middlewares to use:</p>
+<pre><code class="language-javascript"><span class="hl-0">// api/users/index.js</span><br/><br/><span class="hl-1">export</span><span class="hl-2"> </span><span class="hl-3">const</span><span class="hl-2"> </span><span class="hl-7">middlewares</span><span class="hl-2"> = [</span><br/><span class="hl-2">  </span><span class="hl-4">someMiddleware</span><span class="hl-2">,</span><br/><span class="hl-2">  </span><span class="hl-4">someOtherMiddleware</span><br/><span class="hl-2">]</span><br/><br/><span class="hl-1">export</span><span class="hl-2"> </span><span class="hl-1">default</span><span class="hl-2"> </span><span class="hl-3">function</span><span class="hl-2">() {</span><br/><span class="hl-2">  </span><span class="hl-1">return</span><span class="hl-2"> </span><span class="hl-6">&#39;List of users&#39;</span><br/><span class="hl-2">}</span>
+</code></pre>
+<p>You can also define middlewares for specific methods only:</p>
+<ul>
+<li><p>Middlewares for a <code>GET</code> method:</p>
+<pre><code class="language-javascript"><span class="hl-0">// api/users/index.js</span><br/><br/><span class="hl-1">export</span><span class="hl-2"> </span><span class="hl-3">const</span><span class="hl-2"> </span><span class="hl-7">getMiddlewares</span><span class="hl-2"> = [</span><br/><span class="hl-2">  </span><span class="hl-4">someMiddleware</span><span class="hl-2">,</span><br/><span class="hl-2">  </span><span class="hl-4">someOhterMiddleware</span><br/><span class="hl-2">]</span>
+</code></pre>
+</li>
+<li><p>Middlewares for a <code>POST</code> method:</p>
+<pre><code class="language-javascript"><span class="hl-0">// api/users/index.js</span><br/><br/><span class="hl-1">export</span><span class="hl-2"> </span><span class="hl-3">const</span><span class="hl-2"> </span><span class="hl-7">postMiddlewares</span><span class="hl-2"> = [</span><br/><span class="hl-2">  </span><span class="hl-4">someMiddleware</span><span class="hl-2">,</span><br/><span class="hl-2">  </span><span class="hl-4">someOhterMiddleware</span><br/><span class="hl-2">]</span>
+</code></pre>
+</li>
+<li><p>Middlewares for a <code>DELETE</code> method:</p>
+<pre><code class="language-javascript"><span class="hl-0">// api/users/index.js</span><br/><br/><span class="hl-1">export</span><span class="hl-2"> </span><span class="hl-3">const</span><span class="hl-2"> </span><span class="hl-7">delMiddlewares</span><span class="hl-2"> = [</span><br/><span class="hl-2">  </span><span class="hl-4">someMiddleware</span><span class="hl-2">,</span><br/><span class="hl-2">  </span><span class="hl-4">someOhterMiddleware</span><br/><span class="hl-2">]</span>
+</code></pre>
+</li>
+<li><p>Middlewares for all methods, and some for specific methods:</p>
+<pre><code class="language-javascript"><span class="hl-0">// api/users/index.js</span><br/><br/><span class="hl-1">export</span><span class="hl-2"> </span><span class="hl-3">const</span><span class="hl-2"> </span><span class="hl-7">middlewares</span><span class="hl-2"> = [</span><br/><span class="hl-2">  </span><span class="hl-4">bodyParser</span><span class="hl-2">.</span><span class="hl-5">json</span><span class="hl-2">(),</span><br/><span class="hl-2">  </span><span class="hl-4">analyticsMiddleware</span><br/><span class="hl-2">]</span><br/><br/><span class="hl-1">export</span><span class="hl-2"> </span><span class="hl-3">const</span><span class="hl-2"> </span><span class="hl-7">getMiddlewares</span><span class="hl-2"> = [</span><br/><span class="hl-2">  </span><span class="hl-4">someMiddleware</span><br/><span class="hl-2">]</span><br/><br/><span class="hl-1">export</span><span class="hl-2"> </span><span class="hl-3">function</span><span class="hl-2"> </span><span class="hl-5">get</span><span class="hl-2">() {</span><br/><span class="hl-2">  </span><span class="hl-0">// bodyParser was executed</span><br/><span class="hl-2">  </span><span class="hl-0">// analyticsMiddleware was executed</span><br/><span class="hl-2">  </span><span class="hl-0">// someMiddleware was executed</span><br/><br/><span class="hl-2">  </span><span class="hl-1">return</span><span class="hl-2"> </span><span class="hl-6">&#39;List of users&#39;</span><br/><span class="hl-2">}</span><br/><br/><span class="hl-1">export</span><span class="hl-2"> </span><span class="hl-3">const</span><span class="hl-2"> </span><span class="hl-7">postMiddlewares</span><span class="hl-2"> = [</span><br/><span class="hl-2">  </span><span class="hl-4">authMiddleware</span><span class="hl-2">,</span><br/><span class="hl-2">  </span><span class="hl-4">anotherMiddleware</span><br/><span class="hl-2">]</span><br/><br/><span class="hl-1">export</span><span class="hl-2"> </span><span class="hl-3">function</span><span class="hl-2"> </span><span class="hl-5">post</span><span class="hl-2">() {</span><br/><span class="hl-2">  </span><span class="hl-0">// bodyParser was executed</span><br/><span class="hl-2">  </span><span class="hl-0">// analyticsMiddleware was executed</span><br/><span class="hl-2">  </span><span class="hl-0">// authMiddleware was executed</span><br/><span class="hl-2">  </span><span class="hl-0">// anotherMiddleware was executed</span><br/><br/><span class="hl-2">  </span><span class="hl-1">return</span><span class="hl-2"> </span><span class="hl-6">&#39;User created&#39;</span><br/><span class="hl-2">}</span>
+</code></pre>
+</li>
+</ul>
+<p>The middlewares within the mapped routes are executed in that order:</p>
+<ul>
+<li>Middlewares from the <code>middleware</code> options in <code>MappedRoutes()</code>.</li>
+<li>Middlewares exported from <code>export const middlewares = []</code> in the route files.</li>
+<li>Method-specific middlewares.</li>
+</ul>
+
+<a href="#using-an-error-handler" id="using-an-error-handler" style="color: inherit; text-decoration: none;">
+  <h2>Using an error handler</h2>
+</a>
+<p>You can use a custom error handler to handle errors that occur in your routes.
+Be aware that providing a custom error handler for your routes will disable Express&#39; <a href="https://expressjs.com/en/guide/error-handling.html">default error handler</a>.</p>
+<p>The error handler for mapped routes is a simple function that takes 3 arguments:</p>
+<pre><code class="language-javascript"><span class="hl-1">export</span><span class="hl-2"> </span><span class="hl-3">function</span><span class="hl-2"> </span><span class="hl-5">errorHandler</span><span class="hl-2">(</span><span class="hl-4">request</span><span class="hl-2">, </span><span class="hl-4">response</span><span class="hl-2">, </span><span class="hl-4">error</span><span class="hl-2">) {</span><br/><span class="hl-2">  </span><span class="hl-0">// request is the Request object from Express</span><br/><span class="hl-2">  </span><span class="hl-0">// response is the Response object from Express</span><br/><span class="hl-2">  </span><span class="hl-0">// error is the error that was caught from the route</span><br/><br/><span class="hl-2">  </span><span class="hl-4">console</span><span class="hl-2">.</span><span class="hl-5">error</span><span class="hl-2">(</span><span class="hl-4">error</span><span class="hl-2">)</span><br/><br/><span class="hl-2">  </span><span class="hl-4">response</span><span class="hl-2">.</span><span class="hl-5">end</span><span class="hl-2">(</span><span class="hl-6">&#39;An error occurred.&#39;</span><span class="hl-2">)</span><br/><span class="hl-2">}</span>
+</code></pre>
+
+<a href="#using-an-interceptor" id="using-an-interceptor" style="color: inherit; text-decoration: none;">
+  <h2>Using an interceptor</h2>
+</a>
+<p>You can create an interceptor for your mapped routes which will be executed whenever a route ran successfully.</p>
+<p>The usual use of an interceptor is to format the responses and, if necessary, to log some information. An interceptor is a function that takes 3 arguments:</p>
+<pre><code class="language-javascript"><span class="hl-1">export</span><span class="hl-2"> </span><span class="hl-3">function</span><span class="hl-2"> </span><span class="hl-5">interceptor</span><span class="hl-2">(</span><span class="hl-4">request</span><span class="hl-2">, </span><span class="hl-4">response</span><span class="hl-2">, </span><span class="hl-4">content</span><span class="hl-2">) {</span><br/><span class="hl-2">  </span><span class="hl-0">// request is the Request object from Express</span><br/><span class="hl-2">  </span><span class="hl-0">// response is the Response object from Express</span><br/><span class="hl-2">  </span><span class="hl-0">// content is the content returned by the route function</span><br/><br/><span class="hl-2">  </span><span class="hl-4">console</span><span class="hl-2">.</span><span class="hl-5">log</span><span class="hl-2">(</span><span class="hl-6">&#39;Route executed successfully:&#39;</span><span class="hl-2">, </span><span class="hl-4">request</span><span class="hl-2">.</span><span class="hl-4">url</span><span class="hl-2">)</span><br/><br/><span class="hl-2">  </span><span class="hl-4">response</span><span class="hl-2">.</span><span class="hl-5">json</span><span class="hl-2">({</span><br/><span class="hl-2">    </span><span class="hl-4">error:</span><span class="hl-2"> </span><span class="hl-3">false</span><span class="hl-2">,</span><br/><span class="hl-2">    </span><span class="hl-4">data:</span><span class="hl-2"> </span><span class="hl-4">content</span><br/><span class="hl-2">  })</span><br/><span class="hl-2">}</span>
+</code></pre>
+<p>Note that in order to receive <code>content</code> in your interceptor, your routes need to return some value.</p>
+
+<a href="#using-with-typescript" id="using-with-typescript" style="color: inherit; text-decoration: none;">
+  <h1>Using with Typescript</h1>
+</a>
+<p>MappedRoutes is written in Typescript, so the library comes with type declarations and documentation.</p>
+<p>Some extra types are exported to help you type your routes, such as <code>RouteHandler</code>:</p>
+<pre><code class="language-typescript"><span class="hl-1">import</span><span class="hl-2"> { </span><span class="hl-4">RouteHandler</span><span class="hl-2"> } </span><span class="hl-1">from</span><span class="hl-2"> </span><span class="hl-6">&#39;mapped-routes&#39;</span><br/><br/><span class="hl-0">// req and res are automatically typed!</span><br/><span class="hl-1">export</span><span class="hl-2"> </span><span class="hl-3">const</span><span class="hl-2"> </span><span class="hl-5">get</span><span class="hl-2">: </span><span class="hl-10">RouteHandler</span><span class="hl-2"> = (</span><span class="hl-4">req</span><span class="hl-2">, </span><span class="hl-4">res</span><span class="hl-2">) </span><span class="hl-3">=&gt;</span><span class="hl-2"> {</span><br/><span class="hl-2">  </span><span class="hl-1">return</span><span class="hl-2"> </span><span class="hl-6">&#39;My typed and mapped GET route&#39;</span><br/><span class="hl-2">}</span><br/><br/><span class="hl-0">// Typing the return type</span><br/><span class="hl-1">export</span><span class="hl-2"> </span><span class="hl-3">const</span><span class="hl-2"> </span><span class="hl-5">post</span><span class="hl-2">: </span><span class="hl-10">RouteHandler</span><span class="hl-2"> = (</span><span class="hl-4">req</span><span class="hl-2">, </span><span class="hl-4">res</span><span class="hl-2">): </span><span class="hl-10">number</span><span class="hl-2"> </span><span class="hl-3">=&gt;</span><span class="hl-2"> {</span><br/><span class="hl-2">  </span><span class="hl-1">return</span><span class="hl-2"> </span><span class="hl-8">123</span><br/><span class="hl-2">}</span><br/><br/><span class="hl-0">// Typing with generics</span><br/><span class="hl-1">export</span><span class="hl-2"> </span><span class="hl-3">const</span><span class="hl-2"> </span><span class="hl-7">patch</span><span class="hl-2"> = </span><span class="hl-4">RouteHandler</span><span class="hl-2">&lt;</span><span class="hl-4">boolean</span><span class="hl-2">&gt; = (</span><span class="hl-4">req</span><span class="hl-2">, </span><span class="hl-4">res</span><span class="hl-2">) </span><span class="hl-3">=&gt;</span><span class="hl-2"> {</span><br/><span class="hl-2">  </span><span class="hl-1">return</span><span class="hl-2"> </span><span class="hl-3">true</span><br/><span class="hl-2">}</span><br/><br/><span class="hl-0">// Accept Promises as well</span><br/><span class="hl-1">export</span><span class="hl-2"> </span><span class="hl-3">const</span><span class="hl-2"> </span><span class="hl-7">put</span><span class="hl-2"> = </span><span class="hl-4">RouteHandler</span><span class="hl-2">&lt;</span><span class="hl-4">string</span><span class="hl-2">&gt; = </span><span class="hl-3">async</span><span class="hl-2"> (</span><span class="hl-4">req</span><span class="hl-2">, </span><span class="hl-4">res</span><span class="hl-2">) </span><span class="hl-3">=&gt;</span><span class="hl-2"> {</span><br/><span class="hl-2">  </span><span class="hl-1">return</span><span class="hl-2"> </span><span class="hl-6">&#39;OwO&#39;</span><br/><span class="hl-2">}</span><br/>
+</code></pre>
+<p>You can also use regular functions and Express&#39; types:</p>
+<pre><code class="language-typescript"><span class="hl-1">import</span><span class="hl-2"> { </span><span class="hl-4">Request</span><span class="hl-2">, </span><span class="hl-4">Response</span><span class="hl-2"> } </span><span class="hl-1">from</span><span class="hl-2"> </span><span class="hl-6">&#39;express&#39;</span><br/><br/><span class="hl-0">// Using functions, simply use Express types</span><br/><span class="hl-1">export</span><span class="hl-2"> </span><span class="hl-3">function</span><span class="hl-2"> </span><span class="hl-5">get</span><span class="hl-2">(</span><span class="hl-4">req</span><span class="hl-2">: </span><span class="hl-10">Request</span><span class="hl-2">, </span><span class="hl-4">res</span><span class="hl-2">: </span><span class="hl-10">Response</span><span class="hl-2">) {</span><br/><span class="hl-2">  </span><span class="hl-1">return</span><span class="hl-2"> </span><span class="hl-6">&#39;Some value&#39;</span><br/><span class="hl-2">}</span><br/><br/><span class="hl-0">// Using functions and typing the return type</span><br/><span class="hl-1">export</span><span class="hl-2"> </span><span class="hl-3">function</span><span class="hl-2"> </span><span class="hl-5">post</span><span class="hl-2">(</span><span class="hl-4">req</span><span class="hl-2">: </span><span class="hl-10">Request</span><span class="hl-2">, </span><span class="hl-4">res</span><span class="hl-2">: </span><span class="hl-10">Response</span><span class="hl-2">): </span><span class="hl-10">number</span><span class="hl-2"> {</span><br/><span class="hl-2">  </span><span class="hl-1">return</span><span class="hl-2"> </span><span class="hl-8">123</span><br/><span class="hl-2">}</span>
+</code></pre>
+<p>You can type your error handler and interceptor using the <code>ErrorHandler</code> and <code>Interceptor</code> types:</p>
+<pre><code class="language-typescript"><span class="hl-1">import</span><span class="hl-2"> { </span><span class="hl-4">ErrorHandler</span><span class="hl-2">, </span><span class="hl-4">Interceptor</span><span class="hl-2"> } </span><span class="hl-1">from</span><span class="hl-2"> </span><span class="hl-6">&#39;mapped-routes&#39;</span><br/><br/><span class="hl-0">// Typed error handler</span><br/><span class="hl-1">export</span><span class="hl-2"> </span><span class="hl-3">const</span><span class="hl-2"> </span><span class="hl-5">errorHandler</span><span class="hl-2">: </span><span class="hl-10">ErrorHandler</span><span class="hl-2"> = (</span><span class="hl-4">req</span><span class="hl-2">, </span><span class="hl-4">res</span><span class="hl-2">, </span><span class="hl-4">err</span><span class="hl-2">) </span><span class="hl-3">=&gt;</span><span class="hl-2"> {</span><br/><span class="hl-2">  </span><span class="hl-4">console</span><span class="hl-2">.</span><span class="hl-5">error</span><span class="hl-2">(</span><span class="hl-4">err</span><span class="hl-2">)</span><br/><span class="hl-2">}</span><br/><br/><span class="hl-0">// Typed interceptor</span><br/><span class="hl-1">export</span><span class="hl-2"> </span><span class="hl-3">const</span><span class="hl-2"> </span><span class="hl-5">interceptor</span><span class="hl-2">: </span><span class="hl-10">Interceptor</span><span class="hl-2"> = (</span><span class="hl-4">req</span><span class="hl-2">, </span><span class="hl-4">res</span><span class="hl-2">, </span><span class="hl-4">content</span><span class="hl-2">) </span><span class="hl-3">=&gt;</span><span class="hl-2"> {</span><br/><span class="hl-2">  </span><span class="hl-4">console</span><span class="hl-2">.</span><span class="hl-5">log</span><span class="hl-2">(</span><span class="hl-4">content</span><span class="hl-2">)</span><br/><span class="hl-2">}</span>
+</code></pre>
+
+<a href="#contributions" id="contributions" style="color: inherit; text-decoration: none;">
+  <h1>Contributions</h1>
+</a>
+<p>Contributions are welcome as Issues or PR! Make sure to read the <a href="https://github.com/purplnay/mapped-routes/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a>.</p>
+</div></div>
+<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+<div class="tsd-navigation settings">
+<details class="tsd-index-accordion"><summary class="tsd-accordion-summary">
+<h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4.93896 8.531L12 15.591L19.061 8.531L16.939 6.409L12 11.349L7.06098 6.409L4.93896 8.531Z" fill="var(--color-text)"></path></svg> Settings</h3></summary>
+<div class="tsd-accordion-details">
+<div class="tsd-filter-visibility">
+<h4 class="uppercase">Member Visibility</h4><form>
+<ul id="tsd-filter-options">
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-protected" name="protected"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Protected</span></label></li>
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-private" name="private"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Private</span></label></li>
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li>
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-external" name="external"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>External</span></label></li></ul></form></div>
+<div class="tsd-theme-toggle">
+<h4 class="uppercase">Theme</h4><select id="theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div>
+<nav class="tsd-navigation primary">
+<details class="tsd-index-accordion" open><summary class="tsd-accordion-summary">
+<h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4.93896 8.531L12 15.591L19.061 8.531L16.939 6.409L12 11.349L7.06098 6.409L4.93896 8.531Z" fill="var(--color-text)"></path></svg> Modules</h3></summary>
+<div class="tsd-accordion-details">
+<ul>
+<li class="current selected"><a href="modules.html">mapped-<wbr/>routes</a>
+<ul></ul></li></ul></div></details></nav>
+<nav class="tsd-navigation secondary menu-sticky">
+<ul>
+<li class="tsd-kind-interface"><a href="interfaces/MappedRoutesOptions.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-interface)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6" id="icon-256-path"></rect><path d="M9.51 16V15.016H11.298V8.224H9.51V7.24H14.19V8.224H12.402V15.016H14.19V16H9.51Z" fill="var(--color-text)" id="icon-256-text"></path></svg>Mapped<wbr/>Routes<wbr/>Options</a></li>
+<li class="tsd-kind-type-alias"><a href="types/ErrorHandler.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><rect fill="var(--color-icon-background)" stroke="var(--color-ts)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6" id="icon-4194304-path"></rect><path d="M11.31 16V8.224H8.91V7.24H14.79V8.224H12.39V16H11.31Z" fill="var(--color-text)" id="icon-4194304-text"></path></svg>Error<wbr/>Handler</a></li>
+<li class="tsd-kind-type-alias"><a href="types/ExpressRequestHandler.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Express<wbr/>Request<wbr/>Handler</a></li>
+<li class="tsd-kind-type-alias"><a href="types/Interceptor.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Interceptor</a></li>
+<li class="tsd-kind-type-alias"><a href="types/RouteHandler.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Route<wbr/>Handler</a></li>
+<li class="tsd-kind-function"><a href="functions/MappedRoutes.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-function)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6" id="icon-64-path"></rect><path d="M9.39 16V7.24H14.55V8.224H10.446V11.128H14.238V12.112H10.47V16H9.39Z" fill="var(--color-text)" id="icon-64-text"></path></svg>Mapped<wbr/>Routes</a></li></ul></nav></div></div>
+<div class="container tsd-generator">
+<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></div>
+<div class="overlay"></div><script src="assets/main.js"></script></body></html>
