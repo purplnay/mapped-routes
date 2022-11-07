@@ -9,6 +9,6 @@ describe('sortByNestedParams()', () => {
 
     expect(sorted[0].includes(':')).to.be.false
     expect(sorted[sorted.length - 1].includes(':')).to.be.true
-    expect(sorted[sorted.length - 1].match(/:/g).length).to.equal(2)
+    expect(sorted[sorted.length - 1].match(/:/g)!.length).to.equal(2)
   })
 })
