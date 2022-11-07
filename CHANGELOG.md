@@ -1,3 +1,6 @@
+## v2.0.0:
+- Ignore `.spec` and `.test` files to allow tests to live alongside route.
+
 ## v1.0.1~v1.0.8:
 
 - Fix Request and Response types for TypeScript.

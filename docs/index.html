@@ -204,6 +204,18 @@
 app.use(<span class="hljs-string">&#x27;/api&#x27;</span>, MappedRoutes(dir))
 
 app.listen(<span class="hljs-number">3000</span>)</code></pre>
+            <p>
+              You can add your test files (<code>*.spec.js</code>,
+              <code>*.test.js</code>) next to the route files, they will
+              automatically be ignored by the router:
+            </p>
+            <pre><code class="language-javascript"><span class="hljs-comment">// api/posts/[id].spec.js</span>
+
+describe(<span class="hljs-string">&#x27;Posts by id&#x27;</span>, <span class="hljs-function">() =&gt;</span> {
+  it(<span class="hljs-string">&#x27;should do something wholesome&#x27;</span>, <span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-comment">// Tests here.</span>
+  })
+})</code></pre>
             <a
               href="#installation"
               id="installation"

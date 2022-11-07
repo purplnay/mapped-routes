@@ -72,6 +72,19 @@ app.use('/api', MappedRoutes(dir))
 app.listen(3000)
 ```
 
+You can add your test files (`*.spec.js`, `*.test.js`) next to the route
+files, they will automatically be ignored by the router:
+
+```javascript
+// api/posts/[id].spec.js
+
+describe('Posts by id', () => {
+  it('should do something wholesome', () => {
+    // Tests here.
+  })
+})
+```
+
 # Installation
 
 - With **Yarn**:
