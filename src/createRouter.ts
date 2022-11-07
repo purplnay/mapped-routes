@@ -27,6 +27,10 @@ export function createRouter(
 
   // Add the routes to the router in the sorted order
   for (let path of paths) {
+    // Ignore test files
+    if (path.endsWith('.spec')) continue
+    if (path.endsWith('.test')) continue
+
     const file = routes[path]
     const handler = require(file)
     const middlewares = handler.middlewares || []

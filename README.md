@@ -1,12 +1,11 @@
 # Mapped Routes
 
-[![Build Status](https://www.travis-ci.com/purplnay/mapped-routes.svg?branch=main)](https://www.travis-ci.com/purplnay/mapped-routes)
 ![Version](https://img.shields.io/npm/v/mapped-routes)
 [![Prettier](https://img.shields.io/badge/styled%20with-prettier-ff69b4)](https://prettier.io/)
 ![License](https://img.shields.io/github/license/purplnay/mapped-routes)
 
 
-[Next.js](https://nextjs.org/docs/api-routes/introduction) style dynamic route mapping for [Express](https://expressjs.com/), with support for HTTP methods, custom error handling and more.
+File-system routing for [Express](https://expressjs.com/), similar to [Next.js' API routes](https://nextjs.org/docs/api-routes/introduction), with support for HTTP methods, custom error handling and more.
 
 # Table of Contents
 
@@ -70,6 +69,19 @@ const dir = __dirname + '/api'
 app.use('/api', MappedRoutes(dir))
 
 app.listen(3000)
+```
+
+You can add your test files (`*.spec.js`, `*.test.js`) next to the route
+files, they will automatically be ignored by the router:
+
+```javascript
+// api/posts/[id].spec.js
+
+describe('Posts by id', () => {
+  it('should do something wholesome', () => {
+    // Tests here.
+  })
+})
 ```
 
 # Installation

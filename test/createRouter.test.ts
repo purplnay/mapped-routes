@@ -58,4 +58,12 @@ describe('createRouter()', () => {
     expect(getRes.text).to.equal('testMiddleware,getTestMiddleware,getRoute')
     expect(postRes.text).to.equal('testMiddleware,postTestMiddleware,postRoute')
   })
+
+  it('should ignore the .spec files', async () => {
+    await request(server).get('/api/posts/123/like.spec').expect(404)
+  })
+
+  it('should ignore the .test files', async () => {
+    await request(server).get('/api/posts/123/index.test').expect(404)
+  })
 })
